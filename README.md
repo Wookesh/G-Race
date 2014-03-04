@@ -1,2 +1,2 @@
-G-Race
+G-Race Infinity Delux
 ======
