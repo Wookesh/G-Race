@@ -18,9 +18,9 @@
 
 #ifndef BOARD_HPP
 #define BOARD_HPP
-#include <QGraphicsView>
+#include <QWidgets>
 
-class Board : public QGraphicsView {
+class Board : public QWidget {
 	Q_OBJECT;
 };
 
