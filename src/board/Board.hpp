@@ -18,7 +18,7 @@
 
 #ifndef BOARD_HPP
 #define BOARD_HPP
-#include <QWidgets>
+#include <QWidget>
 
 class Board : public QWidget {
 	Q_OBJECT;
