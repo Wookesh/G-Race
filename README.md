@@ -10,13 +10,21 @@ Chcemy stworzyć grę, w której gracz musi pokonywać napotykane przeszkody i p
 Funkcjonalność: 
 Użytkownik (gracz) będzie mógł: 
 1. wybierać z iloma osobami chce grać (tzw. Multiplayer 1-4os);
+
 2. podczas gry zmieniać swoją grawitację;
+
 3. wykorzystywać zebrane "power-up'y" podczas biegu;
+
 4. wybierać, na której planszy chce grać ;
+
 5. dokonywać zakupów w sklepie za zdobyte tokent;
+
 6. edytować i tworzyć nowe plansze w specjalnym edytorze;
+
 7. oceniać i oddawać do oceny stowrzone plansze;
+
 8. grać po sieci (dalsza wersja gry);
+
 9. ... .
 
 Nie przewidujemy ograniczenia ze względu na wiek gracza. Wymagane są podstawy korzystania z komputera. 
