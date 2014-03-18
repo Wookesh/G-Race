@@ -16,28 +16,12 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#ifndef PLAYER_HPP
-#define PLAYER_HPP
-#include <QPointF>
-#include <QString>
-#include "GRaceCommon.hpp"
+#ifndef G_RACE_COMMON_HPP
+#define G_RACE_COMMON_HPP
 
-class Player {
-public :
-	Player(QString name);
-	Player(const Player &other);
-	
-	QString name() const;
-	QPointF position() const;
-	void setPosition(QPointF position);
-	
-	Gravity gravity() const;
-	void setGravity(Gravity gravity);
-private :
-	QString name_;
-	Gravity gravity_;
-	QPointF position_;
+enum class Gravity : bool {
+	Up,
+	Down,
 };
-
 
 #endif
