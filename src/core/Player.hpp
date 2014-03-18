@@ -24,19 +24,35 @@
 
 class Player {
 public :
+	
+	enum class State : qint8 {
+		Running,
+		Stuned,
+		Pushing,
+	};
+	
 	Player(QString name);
 	Player(const Player &other);
 	
 	QString name() const;
+	
 	QPointF position() const;
 	void setPosition(QPointF position);
 	
 	Gravity gravity() const;
 	void setGravity(Gravity gravity);
+	
+	bool isFalling() const;
+	void setFalling(bool falling);
+	
+	State state() const;
+	void setState(State state);
 private :
 	QString name_;
 	Gravity gravity_;
 	QPointF position_;
+	bool falling_;
+	State state_;
 };
 
 

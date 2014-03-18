@@ -18,12 +18,56 @@
 
 #ifndef GAME_CONTROLLER_HPP
 #define GAME_CONTROLLER_HPP
+
 #include <QObject>
+#include <QSet>
+#include <QTimer>
+#include "Player.hpp"
+#include "Map.hpp"
 
 class GameController : public QObject {
 	Q_OBJECT;
 public :
 	
+	enum class State : qint8 {
+		PreGame,
+		Active,
+		Paused,
+		PostGame,
+	};
+	
+	explicit GameController();
+	
+	State state() const;
+	
+	void addPlayer(Player *player);
+	QSet<const Player *> players() const;
+	
+	Map map() const;
+	void setMap(Map *map);
+	
+	void reset();
+	void startGame();
+	
+	static const int MaxPlayers = 4;
+	
+private :
+	State state_;
+	QTimer timer_;
+	QSet<Player *> players_;
+	Map *map_;
+	bool renderDone_;
+	
+	void setState(State state);
+	
+public slots :
+	void timeout(); // obsługuje timeout timera
+	void renderDone();
+signals :
+	void setPause(bool paused);
+	void render();
+	void start();
+	void finish();
 };
 
 

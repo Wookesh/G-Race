@@ -36,11 +36,6 @@ QPointF Player::position() const
 	return position_;
 }
 
-void Player::setGravity(Gravity gravity)
-{
-	gravity_ = gravity;
-}
-
 void Player::setPosition(QPointF position)
 {
 	position_ = position;
@@ -49,4 +44,29 @@ void Player::setPosition(QPointF position)
 Gravity Player::gravity() const
 {
 	return gravity_;
+}
+
+void Player::setGravity(Gravity gravity)
+{
+	gravity_ = gravity;
+}
+
+bool Player::isFalling() const
+{
+	return falling_;
+}
+
+void Player::setFalling(bool falling)
+{
+	falling_ = falling;
+}
+
+Player::State Player::state() const
+{
+	return state_;
+}
+
+void Player::setState(Player::State state)
+{
+	state_ = state;
 }

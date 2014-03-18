@@ -40,6 +40,7 @@ public slots :
 	void setPause(bool);
 	void render(); // renderuje
 	void start();
+	void finish();
 	void setPlayer(Player);
 	void setEnemies(QSet<Player>);
 signals :
