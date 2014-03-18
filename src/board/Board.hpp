@@ -24,7 +24,7 @@
 
 #include <QWidget>
 #include <QPaintEvent>
-#include <QHash>
+#include <QSet>
 
 class Board : public QWidget {
 	Q_OBJECT;
@@ -35,13 +35,13 @@ protected :
 private :
 	const Map * map_;
 	const Player * player_;
-	const QHash<Player> enemies_;
+	const QSet<Player> enemies_;
 public slots :
 	void setPause(bool);
 	void render(); // renderuje
 	void start();
 	void setPlayer(Player);
-	void setEnemies(QHash<Player>);
+	void setEnemies(QSet<Player>);
 signals :
 	void doneRender();
 };
