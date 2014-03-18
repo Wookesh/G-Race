@@ -25,9 +25,6 @@ MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags flags): QMainWindow(pare
 	createLayout();
 	createActions();
 	createMenus();
-	QPalette * palette = new QPalette(this->palette());
-	palette->setColor(QPalette::Background, Qt::white);
-	setPalette(*palette);
 }
 
 void MainWindow::createLayout()

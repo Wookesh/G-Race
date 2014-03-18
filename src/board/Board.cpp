@@ -17,3 +17,7 @@
  */
 
 #include "Board.hpp"
+
+Board::Board(const Map * map, QWidget * parent, Qt::WindowFlags f): QWidget(parent, f)
+{
+}

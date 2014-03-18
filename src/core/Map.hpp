@@ -16,36 +16,28 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#ifndef BOARD_HPP
-#define BOARD_HPP
+#ifndef MAP_HPP
+#define MAP_HPP
+#include "Field.hpp"
+#include <QVector>
 
-#include "../core/Map.hpp"
-#include "../core/Player.hpp"
-
-#include <QWidget>
-#include <QPaintEvent>
-#include <QHash>
-
-class Board : public QWidget {
-	Q_OBJECT;
+class Map {
 public :
-	explicit Board(const Map * map, QWidget * parent = 0, Qt::WindowFlags f = 0);
-protected :
-	void paintEvent(QPaintEvent * event);
+	Map();
+	
+	QVector<const Field> operator[](int) const;
+	
+	int height() const;
+	void setHeigth(int);
+	
+	int width() const;
+	void setWidth(int);
+	
+	void generateNextSegment();
 private :
-	const Map * map_;
-	const Player * player_;
-	const QHash<Player> enemies_;
-public slots :
-	void setPause(bool);
-	void render(); // renderuje
-	void start();
-	void setPlayer(Player);
-	void setEnemies(QHash<Player>);
-signals :
-	void doneRender();
+	int height_;
+	int width_;
+	QVector<QVector<Field> > map_;
 };
-
-
 
 #endif

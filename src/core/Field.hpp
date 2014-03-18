@@ -16,36 +16,17 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#ifndef BOARD_HPP
-#define BOARD_HPP
+#ifndef FIELD_HPP
+#define FIELD_HPP
 
-#include "../core/Map.hpp"
-#include "../core/Player.hpp"
-
-#include <QWidget>
-#include <QPaintEvent>
-#include <QHash>
-
-class Board : public QWidget {
-	Q_OBJECT;
+class Field {
 public :
-	explicit Board(const Map * map, QWidget * parent = 0, Qt::WindowFlags f = 0);
-protected :
-	void paintEvent(QPaintEvent * event);
-private :
-	const Map * map_;
-	const Player * player_;
-	const QHash<Player> enemies_;
-public slots :
-	void setPause(bool);
-	void render(); // renderuje
-	void start();
-	void setPlayer(Player);
-	void setEnemies(QHash<Player>);
-signals :
-	void doneRender();
+	Field (bool transparent = false);
+	
+	bool isTransparent() const;
+	const static int Size = 32;
+private:
+	bool transparent_;
 };
-
-
 
 #endif
