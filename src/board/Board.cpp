@@ -18,6 +18,9 @@
 
 #include "Board.hpp"
 
-Board::Board(const Map * map, QWidget * parent, Qt::WindowFlags f): QWidget(parent, f)
+Board::Board(const Map * map, QWidget * parent, Qt::WindowFlags f,
+             const Player *player_, const QSet<Player *> enemies_): QWidget(parent, f)
 {
+
+
 }
