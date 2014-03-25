@@ -25,9 +25,17 @@ Użytkownik (gracz) będzie mógł:
 
 8. grać po sieci (dalsza wersja gry);
 
-9. ... .
-
 Nie przewidujemy ograniczenia ze względu na wiek gracza. Wymagane są podstawy korzystania z komputera. 
+
+Instalacja:
+(będąc w katalogu G-Race)
+$mkdir build && cd build
+$cmake .. && make
+
+Uruchamianie:
+(z katalogu G-Race)
+$./bin/G-Race
+
 
 Używane technologie:
 GitHub (https://github.com/Wookesh/G-Race/);
