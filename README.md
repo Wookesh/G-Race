@@ -29,11 +29,14 @@ Nie przewidujemy ograniczenia ze względu na wiek gracza. Wymagane są podstawy 
 
 Instalacja:
 (będąc w katalogu G-Race)
+
 $mkdir build && cd build
+
 $cmake .. && make
 
 Uruchamianie:
 (z katalogu G-Race)
+
 $./bin/G-Race
 
 
