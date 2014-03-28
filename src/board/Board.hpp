@@ -27,22 +27,20 @@
 #include <QSet>
 
 class Board : public QWidget {
-	Q_OBJECT;
+	Q_OBJECT
 public :
 	explicit Board(const Map * map, QWidget * parent = 0, Qt::WindowFlags f = 0);
-protected :
-	void paintEvent(QPaintEvent * event);
 private :
 	const Map * map_;
 	const Player * player_;
-	const QSet<Player> enemies_;
+	const QSet<const Player *> enemies_;
 public slots :
 	void setPause(bool);
 	void render(); // renderuje
 	void start();
 	void finish();
-	void setPlayer(Player);
-	void setEnemies(QSet<Player>);
+	void setPlayer(Player *);
+	void setEnemies(QSet<Player *>);
 signals :
 	void doneRender();
 };

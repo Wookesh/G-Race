@@ -22,6 +22,10 @@
 #include <QString>
 #include "GRaceCommon.hpp"
 
+/**
+ * Player
+ * position is position of top-left corner of player box 
+ */
 class Player {
 public :
 	
@@ -47,12 +51,19 @@ public :
 	
 	State state() const;
 	void setState(State state);
+	
+	qreal bonusSpeed() const;
+	void setBonusSpeed(qreal bonusSpeed);
+	
+	static constexpr QPointF Size = QPointF(32.0, 48.0);
+	
 private :
 	QString name_;
 	Gravity gravity_;
 	QPointF position_;
 	bool falling_;
 	State state_;
+	qreal bonusSpead_;
 };
 
 

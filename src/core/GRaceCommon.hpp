@@ -18,10 +18,18 @@
 
 #ifndef G_RACE_COMMON_HPP
 #define G_RACE_COMMON_HPP
+#include <qglobal.h>
 
 enum class Gravity : bool {
 	Up,
 	Down,
+};
+
+enum class Direction : qint8 {
+	Right,
+	Down,
+	Left,
+	Up,
 };
 
 #endif

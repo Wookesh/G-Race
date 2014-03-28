@@ -20,12 +20,15 @@
 #define MAP_HPP
 #include "Field.hpp"
 #include <QVector>
+#include <QPointF>
+#include <QRectF>
+#include "GRaceCommon.hpp"
 
 class Map {
 public :
 	Map();
 	
-	QVector<const Field> operator[](int) const;
+	QVector<Field *> operator[](int) const;
 	
 	int height() const;
 	void setHeigth(int);
@@ -33,11 +36,19 @@ public :
 	int width() const;
 	void setWidth(int);
 	
+	const Field *fieldAt(QPointF point) const;
+	const Field *neightbour(const Field *field, Direction direction) const;
+	
 	void generateNextSegment();
+	QRectF fieldRect(QPointF point) const;
+	
+	
+	static const int MaxHeight = 48;
+	
 private :
 	int height_;
 	int width_;
-	QVector<QVector<Field> > map_;
+	QVector<QVector<Field *> > map_;
 };
 
 #endif

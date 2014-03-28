@@ -24,9 +24,10 @@
 #include <QTimer>
 #include "Player.hpp"
 #include "Map.hpp"
+#include "GRaceCommon.hpp"
 
 class GameController : public QObject {
-	Q_OBJECT;
+	Q_OBJECT
 public :
 	
 	enum class State : qint8 {
@@ -36,29 +37,33 @@ public :
 		PostGame,
 	};
 	
-	explicit GameController();
+	explicit GameController(QObject *parent = 0);
 	
 	State state() const;
 	
 	void addPlayer(Player *player);
-	QSet<const Player *> players() const;
+	QSet<Player*> players() const;
 	
-	Map map() const;
+	Map *map() const;
 	void setMap(Map *map);
 	
 	void reset();
 	void startGame();
 	
 	static const int MaxPlayers = 4;
+	static const int Frames = 30;
+	static constexpr qreal baseSpeed = 1.0;
 	
 private :
 	State state_;
-	QTimer timer_;
+	QTimer *timer_;
 	QSet<Player *> players_;
 	Map *map_;
 	bool renderDone_;
 	
 	void setState(State state);
+	void runTimer();
+	void stopTimer();
 	
 public slots :
 	void timeout(); // obsługuje timeout timera

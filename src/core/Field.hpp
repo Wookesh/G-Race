@@ -25,6 +25,7 @@ public :
 	
 	bool isTransparent() const;
 	const static int Size = 32;
+	
 private:
 	bool transparent_;
 };
