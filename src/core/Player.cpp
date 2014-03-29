@@ -70,3 +70,13 @@ void Player::setState(Player::State state)
 {
 	state_ = state;
 }
+
+qreal Player::bonusSpeed() const
+{
+	return bonusSpead_;
+}
+
+void Player::setBonusSpeed(qreal bonusSpeed)
+{
+	bonusSpead_ = bonusSpeed;
+}

@@ -16,20 +16,46 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#ifndef FIELD_HPP
-#define FIELD_HPP
+#include "Map.hpp"
 
-#include "Player.hpp"
+Map::Map()
+{
+}
 
-class Field {
-public :
-	explicit Field(bool transparent = false);
-	bool isTransparent();
+int Map::width() const
+{
+	return width_;
+}
+
+int Map::height() const
+{
+	return height_;
+}
+
+QVector<Field*> Map::operator[](int x) const
+{
+	return map_[x];
+}
+
+void Map::generateNextSegment()
+{
 	
-	static constexpr QPointF Size = QPointF(32.0, 32.0);
-// 	virtual void action(Player * player);
-private:
-	bool transparent_;
-};
+}
 
-#endif
+const Field* Map::fieldAt(QPointF point) const
+{
+
+}
+
+QRectF Map::fieldRect(QPointF point) const
+{
+
+}
+
+const Field* Map::neightbour(const Field* field, Direction direction) const
+{
+
+}
+
+
+

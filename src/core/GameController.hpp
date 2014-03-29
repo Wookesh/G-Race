@@ -67,7 +67,7 @@ private :
 	
 public slots :
 	void timeout(); // obsługuje timeout timera
-	void renderDone();
+// 	void renderDone();
 signals :
 	void setPause(bool paused);
 	void render();

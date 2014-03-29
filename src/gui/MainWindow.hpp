@@ -19,16 +19,30 @@
 #include <QMainWindow>
 #include <QAction>
 #include <QMenu>
+#include "../core/GameController.hpp"
+#include <QMouseEvent>
+#include "../core/PlayerGraphics.hpp"
+#include "../core/FieldGraphics.hpp"
+#include <QGraphicsView>
 
 class MainWindow : public QMainWindow {
 	Q_OBJECT
 public :
 	explicit MainWindow(QWidget *parent = 0, Qt::WindowFlags flags = 0);
+protected:
+	void mousePressEvent(QMouseEvent * event);
 private :
+	
+	GameController * gameController;
+	PlayerGraphics * pg;
+	FieldGraphics * field;
+	QGraphicsView * view;
+	
 	QWidget * placeholder;
 	QAction * exit;
 	QMenu * menu;
 	void createMenus();
 	void createActions();
 	void createLayout();
+	void createGameController();
 };

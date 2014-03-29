@@ -16,20 +16,23 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#ifndef FIELD_HPP
-#define FIELD_HPP
+#include "FieldGraphics.hpp"
 
-#include "Player.hpp"
-
-class Field {
-public :
-	explicit Field(bool transparent = false);
-	bool isTransparent();
+FieldGraphics::FieldGraphics(Field* field, QGraphicsItem* parent): QGraphicsItem(parent), field_(field)
+{
 	
-	static constexpr QPointF Size = QPointF(32.0, 32.0);
-// 	virtual void action(Player * player);
-private:
-	bool transparent_;
-};
+}
 
-#endif
+QRectF FieldGraphics::boundingRect() const
+{
+	return QRectF(pos(), pos() + QPointF(Field::Size));
+}
+
+void FieldGraphics::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
+{
+	Q_UNUSED(option);
+	Q_UNUSED(widget);
+	QPixmap pixmap = QPixmap("../textures/crate.jpg");
+	painter->drawPixmap(boundingRect(), pixmap, QRectF(0.0, 0.0, 256.0, 256.0));
+}
+

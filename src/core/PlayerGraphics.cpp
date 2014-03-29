@@ -16,20 +16,22 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#ifndef FIELD_HPP
-#define FIELD_HPP
+#include "PlayerGraphics.hpp"
 
-#include "Player.hpp"
-
-class Field {
-public :
-	explicit Field(bool transparent = false);
-	bool isTransparent();
+PlayerGraphics::PlayerGraphics(Player* player, QGraphicsItem* parent): QGraphicsItem(parent), player_(player)
+{
 	
-	static constexpr QPointF Size = QPointF(32.0, 32.0);
-// 	virtual void action(Player * player);
-private:
-	bool transparent_;
-};
+}
 
-#endif
+QRectF PlayerGraphics::boundingRect() const
+{
+	return QRectF(pos(), pos() + QPointF(Player::Size));
+}
+
+void PlayerGraphics::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
+{
+	Q_UNUSED(option);
+	Q_UNUSED(widget);
+	painter->setBrush(Qt::black);
+	painter->drawRect(this->boundingRect());
+}

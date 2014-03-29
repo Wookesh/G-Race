@@ -24,6 +24,22 @@
 #include <QRectF>
 #include "GRaceCommon.hpp"
 
+/**
+ * Map
+ * Map(QString);
+ * 
+ *  exumpel : 
+ *   # -> field
+ * 
+ *  "#############\n" + 
+ *  "#           #\n" +
+ *  "#############\n";
+ * 
+ * scene*
+ * QDataStream >>
+ * QDataStream <<
+ */
+
 class Map {
 public :
 	Map();

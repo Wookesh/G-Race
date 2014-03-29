@@ -16,20 +16,14 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#ifndef FIELD_HPP
-#define FIELD_HPP
+#include "Field.hpp"
 
-#include "Player.hpp"
-
-class Field {
-public :
-	explicit Field(bool transparent = false);
-	bool isTransparent();
+Field::Field(bool transparent): transparent_(transparent)
+{
 	
-	static constexpr QPointF Size = QPointF(32.0, 32.0);
-// 	virtual void action(Player * player);
-private:
-	bool transparent_;
-};
+}
 
-#endif
+bool Field::isTransparent()
+{
+	return transparent_;
+}
