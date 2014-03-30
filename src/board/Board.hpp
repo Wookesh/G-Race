@@ -33,6 +33,7 @@ class Board : public QWidget {
 	Q_OBJECT;
 public :
 	explicit Board(QWidget * parent = 0, Qt::WindowFlags f = 0);
+	~Board();
 protected :
 	void paintEvent(QPaintEvent * event);
 private :

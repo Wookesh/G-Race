@@ -17,24 +17,26 @@
  */
 
 #include "Board.hpp"
-
-Board::Board(QWidget * parent, Qt::WindowFlags f): QWidget(parent, f)
+Board::Board(QWidget * parent, Qt::WindowFlags f): 
+	QWidget(parent, f),
+	view_(new QGraphicsView(parent))
 {
-	
+	view_->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	view_->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 }
 
 void Board::render()
 {
-	
 	scene_->update(scene_->sceneRect());
 	view_->centerOn(player_->position());
-	view_->show();
+	//view_->show(); TODO tego nie jestem pewien, trzeba sprawdzic
 	emit doneRender();
 }
 
 void Board::setMap(QGraphicsScene* map)
 {
 	scene_ = map;
+	view_->setScene(scene_);
 }
 
 void Board::setPlayer(Player* player)
@@ -65,6 +67,12 @@ void Board::start()
 {
 
 }
+
+Board::~Board()
+{
+	delete view_;
+}
+
 
 
 
