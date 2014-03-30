@@ -25,22 +25,33 @@
 #include <QWidget>
 #include <QPaintEvent>
 #include <QSet>
+#include <QGraphicsScene>
+#include <QGraphicsView>
+#include <QGraphicsItem>
 
 class Board : public QWidget {
-	Q_OBJECT
+	Q_OBJECT;
 public :
-	explicit Board(const Map * map, QWidget * parent = 0, Qt::WindowFlags f = 0);
+	explicit Board(QWidget * parent = 0, Qt::WindowFlags f = 0);
+	~Board();
+protected :
+	void paintEvent(QPaintEvent * event);
 private :
-	const Map * map_;
 	const Player * player_;
-	const QSet<const Player *> enemies_;
+	const QSet<Player>* enemies_;
+	const int viewWidth_ = 640;
+	const int viewHeight_ = 320;
+	QGraphicsScene * scene_;
+	QGraphicsView * view_;
+	QGraphicsRectItem * tempPlayer_;
 public slots :
 	void setPause(bool);
 	void render(); // renderuje
 	void start();
 	void finish();
-	void setPlayer(Player *);
-	void setEnemies(QSet<Player *>);
+	void setPlayer(Player*);
+	void setEnemies(QSet<Player>*);
+	void setMap(QGraphicsScene*);
 signals :
 	void doneRender();
 };

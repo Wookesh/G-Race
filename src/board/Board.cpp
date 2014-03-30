@@ -17,7 +17,62 @@
  */
 
 #include "Board.hpp"
-
-Board::Board(const Map *map, QWidget *parent, Qt::WindowFlags f): QWidget(parent, f)
+Board::Board(QWidget * parent, Qt::WindowFlags f): 
+	QWidget(parent, f),
+	view_(new QGraphicsView(parent))
 {
+	view_->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	view_->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 }
+
+void Board::render()
+{
+	scene_->update(scene_->sceneRect());
+	view_->centerOn(player_->position());
+	//view_->show(); TODO tego nie jestem pewien, trzeba sprawdzic
+	emit doneRender();
+}
+
+void Board::setMap(QGraphicsScene* map)
+{
+	scene_ = map;
+	view_->setScene(scene_);
+}
+
+void Board::setPlayer(Player* player)
+{
+	player_ = player;
+}
+
+void Board::setEnemies(QSet< Player >* enemies)
+{
+	enemies_ = enemies;
+}
+
+void Board::finish()
+{
+
+}
+void Board::paintEvent(QPaintEvent* event)
+{
+QWidget::paintEvent(event);
+}
+
+void Board::setPause(bool pause)
+{
+
+}
+
+void Board::start()
+{
+
+}
+
+Board::~Board()
+{
+	delete view_;
+}
+
+
+
+
