@@ -28,8 +28,8 @@ void Board::render()
 	
 	scene_->update(scene_->sceneRect());
 	view_->centerOn(player_->position());
-	
 	view_->show();
+	emit doneRender();
 }
 
 void Board::setMap(QGraphicsScene* map)
