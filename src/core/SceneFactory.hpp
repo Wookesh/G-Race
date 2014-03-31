@@ -16,18 +16,13 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#ifndef MAP_HPP
-#define MAP_HPP
+#ifndef SCENE_FACTORY_HPP
+#define SCENE_FACTORY_HPP
+#include <QtWidgets/QGraphicsScene>
 #include "Field.hpp"
-#include <QVector>
-#include <QPointF>
-#include <QRectF>
-#include "GRaceCommon.hpp"
 
 /**
- * Map
- * Map(QString);
- * 
+ * SceneFactory
  *  exumpel : 
  *   # -> field
  * 
@@ -40,31 +35,13 @@
  * QDataStream <<
  */
 
-class Map {
+class SceneFactory {
 public :
-	Map();
+	explicit SceneFactory();
 	
-	QVector<Field *> operator[](int) const;
-	
-	int height() const;
-	void setHeigth(int);
-	
-	int width() const;
-	void setWidth(int);
-	
-	const Field *fieldAt(QPointF point) const;
-	const Field *neightbour(const Field *field, Direction direction) const;
-	
-	void generateNextSegment();
-	QRectF fieldRect(QPointF point) const;
-	
-	
-	static const int MaxHeight = 48;
-	
-private :
-	int height_;
-	int width_;
-	QVector<QVector<Field *> > map_;
+	QGraphicsScene * createScene(QString map);
+// 	QDataStream &operator<<(QDataStream &out);
+// 	QDataStream &operator>>(QDataStream &in);
 };
 
 #endif

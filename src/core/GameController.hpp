@@ -22,8 +22,8 @@
 #include <QObject>
 #include <QSet>
 #include <QTimer>
-#include "Player.hpp"
-#include "Map.hpp"
+#include <QtWidgets/QGraphicsScene>
+#include "PlayerGraphics.hpp"
 #include "GRaceCommon.hpp"
 
 class GameController : public QObject {
@@ -42,13 +42,13 @@ public :
 	State state() const;
 	
 	void addPlayer(Player *player);
-	QSet<Player*> players() const;
-	
-	Map *map() const;
-	void setMap(Map *map);
+	QSet<PlayerGraphics*> players() const;
 	
 	void reset();
 	void startGame();
+	void initGame();
+	
+	QGraphicsScene *scene();
 	
 	static const int MaxPlayers = 4;
 	static const int Frames = 30;
@@ -57,9 +57,10 @@ public :
 private :
 	State state_;
 	QTimer *timer_;
-	QSet<Player *> players_;
-	Map *map_;
+	QSet<PlayerGraphics *> players_;
 	bool renderDone_;
+	
+	QGraphicsScene *scene_;
 	
 	void setState(State state);
 	void runTimer();
@@ -67,7 +68,6 @@ private :
 	
 public slots :
 	void timeout(); // obsługuje timeout timera
-// 	void renderDone();
 signals :
 	void setPause(bool paused);
 	void render();

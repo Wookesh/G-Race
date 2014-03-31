@@ -18,6 +18,6 @@
 
 #include "Board.hpp"
 
-Board::Board(const Map *map, QWidget *parent, Qt::WindowFlags f): QWidget(parent, f)
+Board::Board(QWidget *parent, Qt::WindowFlags f): QWidget(parent, f)
 {
 }

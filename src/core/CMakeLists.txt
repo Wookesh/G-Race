@@ -1,4 +1,5 @@
 add_library(core 
+	SceneFactory.cpp
 	PlayerGraphics.cpp
 	Player.cpp
 	FieldGraphics.cpp
@@ -11,3 +12,5 @@ add_library(logic
 
 qt5_use_modules(core Core)
 qt5_use_modules(logic Core)
+
+target_link_libraries(logic core)

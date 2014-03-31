@@ -25,7 +25,7 @@ FieldGraphics::FieldGraphics(Field* field, QGraphicsItem* parent): QGraphicsItem
 
 QRectF FieldGraphics::boundingRect() const
 {
-	return QRectF(pos(), pos() + QPointF(Field::Size));
+	return QRectF(pos(), pos() + (QPointF(Field::Size)) * 2);
 }
 
 void FieldGraphics::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)

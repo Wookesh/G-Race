@@ -25,7 +25,12 @@ PlayerGraphics::PlayerGraphics(Player* player, QGraphicsItem* parent): QGraphics
 
 QRectF PlayerGraphics::boundingRect() const
 {
-	return QRectF(pos(), pos() + QPointF(Player::Size));
+	return QRectF(pos(), pos() + QPointF(Player::Size) * 2);
+}
+
+Player* PlayerGraphics::player()
+{
+	return player_;
 }
 
 void PlayerGraphics::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)

@@ -19,7 +19,6 @@
 #ifndef BOARD_HPP
 #define BOARD_HPP
 
-#include "../core/Map.hpp"
 #include "../core/Player.hpp"
 
 #include <QWidget>
@@ -29,9 +28,8 @@
 class Board : public QWidget {
 	Q_OBJECT
 public :
-	explicit Board(const Map * map, QWidget * parent = 0, Qt::WindowFlags f = 0);
+	explicit Board(QWidget * parent = 0, Qt::WindowFlags f = 0);
 private :
-	const Map * map_;
 	const Player * player_;
 	const QSet<const Player *> enemies_;
 public slots :

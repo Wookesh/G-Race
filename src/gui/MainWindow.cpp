@@ -24,10 +24,12 @@
 #include <QGraphicsView>
 #include "../core/PlayerGraphics.hpp"
 #include "../core/FieldGraphics.hpp"
+#include "../core/SceneFactory.hpp"
 #include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags flags): QMainWindow(parent, flags)
 {
+	createGameController();
 	createLayout();
 	createActions();
 	createMenus();
@@ -36,16 +38,8 @@ MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags flags): QMainWindow(pare
 void MainWindow::createLayout()
 {
 	placeholder = new QWidget(this);
-	
-	pg = new PlayerGraphics(new Player("Andrzej"));
-	field = new FieldGraphics(new Field());
-	
-	QGraphicsScene *scene = new QGraphicsScene();
-	scene->addItem(pg);
-	scene->addItem(field);
-	scene->setSceneRect(-600.0, -400.0, 1200.0, 800.0);
-	view = new QGraphicsView(scene);
-	
+	gameController->initGame();
+	view = new QGraphicsView(gameController->scene());
 	setCentralWidget(view);
 }
 
@@ -69,7 +63,7 @@ void MainWindow::createGameController()
 
 void MainWindow::mousePressEvent(QMouseEvent* event)
 {
-	pg->moveBy(10.0, 10.0);
+	pg->moveBy(10.0, 0.0);
 	qDebug() << pg->pos() << field->pos();
 	QMainWindow::mousePressEvent(event);
 	

@@ -17,6 +17,7 @@
  */
 
 #include "GameController.hpp"
+#include "SceneFactory.hpp"
 
 GameController::GameController(QObject *parent): QObject(parent)
 {
@@ -24,10 +25,26 @@ GameController::GameController(QObject *parent): QObject(parent)
 	QObject::connect(timer_, &QTimer::timeout, this, &GameController::timeout);
 }
 
-void GameController::setMap(Map* map)
+void GameController::initGame()
 {
-	map_ = map;
+	SceneFactory factory;
+	QString map("##########\n"
+					"#        #\n"
+					"#        #\n"
+					"##########\n");
+	scene_ = factory.createScene(map);
+	players_.insert(new PlayerGraphics(new Player("Andrzej")));
+	for (PlayerGraphics *player : players_) {
+		scene_->addItem(player);
+		player->setPos(64.0, 48.0);
+	}
 }
+
+QGraphicsScene* GameController::scene()
+{
+	return scene_;
+}
+
 
 void GameController::setState(GameController::State state)
 {
@@ -37,7 +54,7 @@ void GameController::setState(GameController::State state)
 
 void GameController::addPlayer(Player *player)
 {
-	players_.insert(player);
+	//players_.insert(player);
 }
 
 GameController::State GameController::state() const
@@ -45,12 +62,8 @@ GameController::State GameController::state() const
 	return state_;
 }
 
-Map *GameController::map() const
-{
-	return map_;
-}
 
-QSet<Player *> GameController::players() const
+QSet<PlayerGraphics *> GameController::players() const
 {
 	return players_;
 }
@@ -67,13 +80,14 @@ void GameController::stopTimer()
 
 void GameController::timeout()
 {
-	for (Player * player : players_) {
-		switch (player->state()) {
+	for (PlayerGraphics * player : players_) {
+		switch (player->player()->state()) {
 			case Player::State::Pushing :
 			case Player::State::Stuned : {
 				break;
 			}
 			case Player::State::Running : {
+				
 				break;
 			}
 		}
