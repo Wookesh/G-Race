@@ -22,6 +22,9 @@
 #include "PlayerGraphics.hpp"
 #include <QtWidgets/QGraphicsScene>
 #include <QSet>
+#include <QGraphicsScene>
+#include <QGraphicsView>
+#include <QGraphicsItem>
 
 class Scene : public QGraphicsScene {
 	Q_OBJECT
@@ -35,8 +38,9 @@ public slots :
 	void render(); // renderuje
 	void start();
 	void finish();
-	void setPlayer(Player *);
-	void setEnemies(QSet<Player *>);
+	void setPlayer(Player*);
+	void setEnemies(QSet<Player>*);
+	void setMap(QGraphicsScene*);
 signals :
 	void doneRender();
 };
