@@ -17,7 +17,6 @@
  */
 
 #include "SceneFactory.hpp"
-#include "Field.hpp"
 #include "FieldGraphics.hpp"
 #include <QDebug>
 

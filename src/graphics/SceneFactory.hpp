@@ -16,22 +16,31 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#ifndef FIELD_GRAHICS_HPP
-#define FIELD_GRAHICS_HPP
+#ifndef SCENE_FACTORY_HPP
+#define SCENE_FACTORY_HPP
+#include <QtWidgets/QGraphicsScene>
 
-#include <QtWidgets/QGraphicsItem>
-#include <QtWidgets/QStyleOptionGraphicsItem>
-#include <QtGui/QPainter>
-#include "Field.hpp"
+/**
+ * SceneFactory
+ *  exumpel : 
+ *   # -> field
+ * 
+ *  "#############\n" + 
+ *  "#           #\n" +
+ *  "#############\n";
+ * 
+ * scene*
+ * QDataStream >>
+ * QDataStream <<
+ */
 
-class FieldGraphics : public QGraphicsItem {
+class SceneFactory {
 public :
-	explicit FieldGraphics(Field *field, QGraphicsItem *parent = 0);
+	explicit SceneFactory();
 	
-	virtual QRectF boundingRect() const;
-	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0);
-private :
-	Field *field_;
+	QGraphicsScene * createScene(QString map);
+// 	QDataStream &operator<<(QDataStream &out);
+// 	QDataStream &operator>>(QDataStream &in);
 };
 
 #endif

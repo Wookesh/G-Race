@@ -16,8 +16,24 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include "Board.hpp"
+#ifndef PLAYER_GRAPHICS_HPP
+#define PLAYER_GRAPHICS_HPP
 
-Board::Board(QWidget *parent, Qt::WindowFlags f): QWidget(parent, f)
-{
-}
+#include <QtWidgets/QGraphicsItem>
+#include <QtWidgets/QStyleOptionGraphicsItem>
+#include <QtGui/QPainter>
+#include "../logic/Player.hpp"
+
+class PlayerGraphics : public QGraphicsItem {
+public :
+	explicit PlayerGraphics(Player *player, QGraphicsItem *parent = 0);
+	
+	QRectF boundingRect() const override;
+	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+	
+	Player *player();
+private :
+	Player *player_;
+};
+
+#endif

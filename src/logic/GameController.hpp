@@ -23,8 +23,9 @@
 #include <QSet>
 #include <QTimer>
 #include <QtWidgets/QGraphicsScene>
-#include "PlayerGraphics.hpp"
 #include "GRaceCommon.hpp"
+#include "Player.hpp"
+#include "Field.hpp"
 
 class GameController : public QObject {
 	Q_OBJECT
@@ -42,7 +43,7 @@ public :
 	State state() const;
 	
 	void addPlayer(Player *player);
-	QSet<PlayerGraphics*> players() const;
+	QSet<Player*> players() const;
 	
 	void reset();
 	void startGame();
@@ -57,7 +58,7 @@ public :
 private :
 	State state_;
 	QTimer *timer_;
-	QSet<PlayerGraphics *> players_;
+	QSet<Player *> players_;
 	bool renderDone_;
 	
 	QGraphicsScene *scene_;

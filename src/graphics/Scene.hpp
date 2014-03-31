@@ -16,24 +16,31 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#ifndef PLAYER_GRAPHICS_HPP
-#define PLAYER_GRAPHICS_HPP
+#ifndef BOARD_HPP
+#define BOARD_HPP
 
-#include <QtWidgets/QGraphicsItem>
-#include <QtWidgets/QStyleOptionGraphicsItem>
-#include <QtGui/QPainter>
-#include "Player.hpp"
+#include "PlayerGraphics.hpp"
+#include <QtWidgets/QGraphicsScene>
+#include <QSet>
 
-class PlayerGraphics : public QGraphicsItem {
+class Scene : public QGraphicsScene {
+	Q_OBJECT
 public :
-	explicit PlayerGraphics(Player *player, QGraphicsItem *parent = 0);
-	
-	QRectF boundingRect() const override;
-	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-	
-	Player *player();
+	explicit Scene(QWidget * parent = 0, Qt::WindowFlags f = 0);
 private :
-	Player *player_;
+	const PlayerGraphics * MainPlayer_;
+	const QSet<const PlayerGraphics *> players_;
+public slots :
+	void setPause(bool);
+	void render(); // renderuje
+	void start();
+	void finish();
+	void setPlayer(Player *);
+	void setEnemies(QSet<Player *>);
+signals :
+	void doneRender();
 };
+
+
 
 #endif

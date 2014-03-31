@@ -1,3 +1,3 @@
-add_subdirectory(core)
-add_subdirectory(board)
+add_subdirectory(logic)
+add_subdirectory(graphics)
 add_subdirectory(gui)

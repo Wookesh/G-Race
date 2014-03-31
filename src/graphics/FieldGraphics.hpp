@@ -16,33 +16,22 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#ifndef BOARD_HPP
-#define BOARD_HPP
+#ifndef FIELD_GRAHICS_HPP
+#define FIELD_GRAHICS_HPP
 
-#include "../core/Player.hpp"
+#include <QtWidgets/QGraphicsItem>
+#include <QtWidgets/QStyleOptionGraphicsItem>
+#include <QtGui/QPainter>
+#include "../logic/Field.hpp"
 
-#include <QWidget>
-#include <QPaintEvent>
-#include <QSet>
-
-class Board : public QWidget {
-	Q_OBJECT
+class FieldGraphics : public QGraphicsItem {
 public :
-	explicit Board(QWidget * parent = 0, Qt::WindowFlags f = 0);
+	explicit FieldGraphics(Field *field, QGraphicsItem *parent = 0);
+	
+	virtual QRectF boundingRect() const;
+	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0);
 private :
-	const Player * player_;
-	const QSet<const Player *> enemies_;
-public slots :
-	void setPause(bool);
-	void render(); // renderuje
-	void start();
-	void finish();
-	void setPlayer(Player *);
-	void setEnemies(QSet<Player *>);
-signals :
-	void doneRender();
+	Field *field_;
 };
-
-
 
 #endif

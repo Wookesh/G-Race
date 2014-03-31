@@ -16,32 +16,4 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#ifndef SCENE_FACTORY_HPP
-#define SCENE_FACTORY_HPP
-#include <QtWidgets/QGraphicsScene>
-#include "Field.hpp"
-
-/**
- * SceneFactory
- *  exumpel : 
- *   # -> field
- * 
- *  "#############\n" + 
- *  "#           #\n" +
- *  "#############\n";
- * 
- * scene*
- * QDataStream >>
- * QDataStream <<
- */
-
-class SceneFactory {
-public :
-	explicit SceneFactory();
-	
-	QGraphicsScene * createScene(QString map);
-// 	QDataStream &operator<<(QDataStream &out);
-// 	QDataStream &operator>>(QDataStream &in);
-};
-
-#endif
+#include "Scene.hpp"

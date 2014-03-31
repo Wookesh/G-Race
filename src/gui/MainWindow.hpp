@@ -19,10 +19,10 @@
 #include <QMainWindow>
 #include <QAction>
 #include <QMenu>
-#include "../core/GameController.hpp"
+#include "../logic/GameController.hpp"
 #include <QMouseEvent>
-#include "../core/PlayerGraphics.hpp"
-#include "../core/FieldGraphics.hpp"
+#include "../graphics/PlayerGraphics.hpp"
+#include "../graphics/FieldGraphics.hpp"
 #include <QGraphicsView>
 
 class MainWindow : public QMainWindow {

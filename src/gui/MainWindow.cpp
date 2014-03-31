@@ -22,9 +22,7 @@
 
 #include <QGraphicsScene>
 #include <QGraphicsView>
-#include "../core/PlayerGraphics.hpp"
-#include "../core/FieldGraphics.hpp"
-#include "../core/SceneFactory.hpp"
+#include "../graphics/SceneFactory.hpp"
 #include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags flags): QMainWindow(parent, flags)
@@ -39,7 +37,7 @@ void MainWindow::createLayout()
 {
 	placeholder = new QWidget(this);
 	gameController->initGame();
-	view = new QGraphicsView(gameController->scene());
+	view = new QGraphicsView();
 	setCentralWidget(view);
 }
 
