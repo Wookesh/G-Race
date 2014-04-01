@@ -18,25 +18,18 @@
 
 #include "PlayerGraphics.hpp"
 
-PlayerGraphics::PlayerGraphics(Player* player, QGraphicsItem* parent): QGraphicsItem(parent), player_(player)
+PlayerGraphics::PlayerGraphics(QGraphicsItem* parent, QVector< QString >* pathsToImages, Player* player): 
+		ObjectGraphics(parent, pathsToImages), player_(player)
 {
 	
 }
 
 QRectF PlayerGraphics::boundingRect() const
 {
-	return QRectF(pos(), pos() + QPointF(Player::Size) * 2);
+	return QRectF(Player::Size/2, Player::Size/2 + QPointF(Player::Size) * 2);
 }
 
 Player* PlayerGraphics::player()
 {
 	return player_;
-}
-
-void PlayerGraphics::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
-{
-	Q_UNUSED(option);
-	Q_UNUSED(widget);
-	painter->setBrush(Qt::black);
-	painter->drawRect(this->boundingRect());
 }

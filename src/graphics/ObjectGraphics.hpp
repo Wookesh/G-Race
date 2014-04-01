@@ -19,9 +19,19 @@
 #ifndef OBJECT_GRAPHICS_HPP
 #define OBJECT_GRAPHICS_HPP
 
-virtual class PlayerGraphics : public QGraphicsItem {
+#include <QVector>
+#include <QString>
+#include <QGraphicsItem>
+#include <QStyleOptionGraphicsItem>
+#include <QPainter>
+
+class ObjectGraphics : public QGraphicsItem {
 public :
-	
+	ObjectGraphics(QGraphicsItem *parent = 0, QVector<QString> *pathsToImages = 0);
+	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
+			QWidget *widget, QString pathToImage, QPointF size);
+private:
+	QVector<QPixmap> pixMaps_;
 };
 
 #endif

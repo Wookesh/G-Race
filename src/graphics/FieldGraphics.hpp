@@ -19,17 +19,13 @@
 #ifndef FIELD_GRAPHICS_HPP
 #define FIELD_GRAPHICS_HPP
 
-#include <QtWidgets/QGraphicsItem>
-#include <QtWidgets/QStyleOptionGraphicsItem>
-#include <QtGui/QPainter>
+#include "ObjectGraphics.hpp"
 #include "../logic/Field.hpp"
 
-class FieldGraphics : public QGraphicsItem {
+class FieldGraphics : public ObjectGraphics{
 public :
-	explicit FieldGraphics(Field *field, QGraphicsItem *parent = 0);
-	
-	virtual QRectF boundingRect() const;
-	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0);
+	explicit FieldGraphics(QGraphicsItem *parent = 0, QVector<QString> *pathsToImages = 0, Field *field = 0);
+	virtual QRectF boundingRect() const override;
 private :
 	Field *field_;
 };

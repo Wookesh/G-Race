@@ -18,21 +18,16 @@
 
 #include "FieldGraphics.hpp"
 
-FieldGraphics::FieldGraphics(Field* field, QGraphicsItem* parent): QGraphicsItem(parent), field_(field)
+FieldGraphics::FieldGraphics(QGraphicsItem* parent, QVector< QString >* pathsToImages, Field* field):
+	ObjectGraphics(parent, pathsToImages), field_(field)
 {
 	
 }
 
 QRectF FieldGraphics::boundingRect() const
 {
-	return QRectF(pos(), pos() + (QPointF(Field::Size)) * 2);
+	return QRectF(Field::Size/2, Field::Size/2 + (QPointF(Field::Size)) * 2);
 }
 
-void FieldGraphics::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
-{
-	Q_UNUSED(option);
-	Q_UNUSED(widget);
-	QPixmap pixmap = QPixmap("../textures/crate.jpg");
-	painter->drawPixmap(boundingRect(), pixmap, QRectF(0.0, 0.0, 256.0, 256.0));
-}
+
 
