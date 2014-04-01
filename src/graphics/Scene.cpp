@@ -18,7 +18,7 @@
 
 #include "Scene.hpp"
 
-Scene::Scene(QWidget* parent, Qt::WindowFlags f): QGraphicsScene(parent, f)
+Scene::Scene(QWidget *parent): QGraphicsScene(parent)
 {
 
 }
@@ -28,7 +28,7 @@ QList< Object* > Scene::collidingFields(QPointF corner, QPointF size) const
 {
 	QList<Object *> list;
 	for(QGraphicsItem *item: QGraphicsScene::items(QRectF(corner, size)))
-		list.insert(static_cast<ObjectGraphics*>(item)->object());
+		list.push_back(static_cast<ObjectGraphics*>(item)->object());
 
 	return list;
 }
@@ -48,15 +48,16 @@ void Scene::render()
 
 }
 
-void Scene::setPlayer(Player* p)
+void Scene::setPlayer(Player *p)
 {
-	MainPlayer_ = PlayerGraphics(QGraphicsItem(), QVector<QString>*, p);
+	//FIXME chyba nie o taki konstruktor wam chodziło...
+// 	MainPlayer_ = PlayerGraphics(QGraphicsItem(), QVector<QString>*, p);
 }
 
-void Scene::setEnemies(QSet< Player >* set)
+void Scene::setEnemies(QSet<Player> *set)
 {
-	for (Player *p : set)
-		players_.insert(PlayerGraphics(QGraphicsItem(), QVector<QString>*, p));
+// 	for (Player *p : set)
+// 		players_.insert(PlayerGraphics(QGraphicsItem(), QVector<QString>*, p));
 }
 void Scene::setMap(QGraphicsScene* )
 {

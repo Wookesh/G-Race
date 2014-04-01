@@ -58,9 +58,16 @@ void Player::setState(Player::State state)
 	state_ = state;
 }
 
+QPointF Player::size()
+{
+	static QPointF point = QPointF(32.0, 48.0);
+	return point;
+}
+
+
 void Player::onStep(Object *object)
 {
-	object->setPosition(this->position() - QPointF(QPointF(Player::Size).x(), 0.0));
+	object->setPosition(this->position() - QPointF(QPointF(Player::size()).x(), 0.0));
 }
 
 qreal Player::bonusSpeed() const

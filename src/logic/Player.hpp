@@ -54,7 +54,7 @@ public :
 	
 	void onStep(Object *object) override;
 	
-	static constexpr QPointF Size = QPointF(32.0, 48.0);
+	static QPointF size();
 	static constexpr qreal BaseSpeed = 1.0;
 	
 private :

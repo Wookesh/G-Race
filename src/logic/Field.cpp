@@ -24,11 +24,16 @@ Field::Field(bool transparent): transparent_(transparent)
 	
 }
 
-void Field::onStep(Object* object)
+QPointF Field::size()
 {
-	object->setPosition(this->position() - QPointF(Player::Size.x(), 0.0));
+	static QPointF point = QPointF(32.0, 48.0);
+	return point;
 }
 
+void Field::onStep(Object* object)
+{
+	object->setPosition(this->position() - QPointF(Player::size().x(), 0.0));
+}
 
 bool Field::isTransparent()
 {

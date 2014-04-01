@@ -19,18 +19,19 @@
 #ifndef BOARD_HPP
 #define BOARD_HPP
 
-#include "PlayerGraphics.hpp"
 #include <QtWidgets/QGraphicsScene>
 #include <QSet>
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QGraphicsItem>
+#include "ObjectGraphics.hpp"
+#include "PlayerGraphics.hpp"
 #include "../logic/CollisionDetector.hpp"
 
 class Scene : public QGraphicsScene, public CollisionDetector {
 	Q_OBJECT
 public :
-	explicit Scene(QWidget * parent = 0, Qt::WindowFlags f = 0);
+	explicit Scene(QWidget *parent = 0);
 	QList<Object *> collidingFields(QPointF, QPointF) const;
 private :
 	PlayerGraphics *MainPlayer_;

@@ -22,7 +22,7 @@
 #include "ObjectGraphics.hpp"
 #include "../logic/Field.hpp"
 
-class FieldGraphics : public ObjectGraphics{
+class FieldGraphics : public ObjectGraphics {
 public :
 	explicit FieldGraphics(QGraphicsItem *parent = 0, QVector<QString> *pathsToImages = 0, Field *field = 0);
 	virtual QRectF boundingRect() const override;

@@ -28,6 +28,12 @@ QPointF Object::position() const
 	return position_;
 }
 
+QPointF Object::size()
+{
+	static QPointF point = QPointF(32.0, 48.0);
+	return point;
+}
+
 void Object::setPosition(QPointF position)
 {
 	position_ = position;

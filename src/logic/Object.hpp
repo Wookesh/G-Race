@@ -27,9 +27,9 @@ public :
 	QPointF position() const;
 	void setPosition(QPointF position);
 	
-	virtual void onStep(Object *object);
+	virtual void onStep(Object *object) {};
 	
-	static constexpr QPointF Size = QPointF(0.0, 0.0);
+	static QPointF size();
 protected :
 	QPointF position_;
 };

@@ -29,10 +29,9 @@
 class ObjectGraphics : public QGraphicsItem {
 public :
 	ObjectGraphics(QGraphicsItem *parent = 0, QVector<QString> *pathsToImages = 0);
-	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
-			QWidget *widget);
+	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 	virtual QPointF size();
-	Object* object();
+	Object *object();
 protected:
 	QVector<QPixmap> pixMaps_;
 	Object *object_;

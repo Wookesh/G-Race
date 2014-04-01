@@ -27,7 +27,7 @@ public :
 	bool isTransparent();
 	
 	virtual void onStep(Object *object);
-	static constexpr QPointF Size = QPointF(32.0, 32.0);
+	static QPointF size();
 private:
 	bool transparent_;
 };

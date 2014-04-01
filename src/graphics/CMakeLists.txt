@@ -1,4 +1,5 @@
 add_library(graphics
+	ObjectGraphics.cpp
 	PlayerGraphics.cpp
 	FieldGraphics.cpp
 	Scene.cpp

@@ -15,6 +15,10 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
+
+#ifndef COLLISION_DETECTOR_HPP
+#define COLLISION_DETECTOR_HPP
+
 #include <QPointF>
 #include <QList>
 #include "Object.hpp"
@@ -24,3 +28,5 @@ public :
 	CollisionDetector();
 	virtual QList<Object *> collidingFields(QPointF, QPointF) const;
 };
+
+#endif

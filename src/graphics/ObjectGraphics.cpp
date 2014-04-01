@@ -24,19 +24,20 @@ ObjectGraphics::ObjectGraphics(QGraphicsItem* parent, QVector< QString > *pathsT
 {
 	for(QString path: *pathsToImages)
 	{
-		this->pixMaps_.insert(QPixmap(path));
+		//NOTE chyba chodziło o to
+		this->pixMaps_.push_back(QPixmap(path));
 	}
 }
 
-void ObjectGraphics::paint(QPainter* painter, const QStyleOptionGraphicsItem* option,
-				QWidget* widget)
+void ObjectGraphics::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
 	Q_UNUSED(option);
 	Q_UNUSED(widget);
-	painter->drawPixmap(boundingRect(), pixmap, QRectF(0.0, 0.0, ));
+	//TODO
+// 	painter->drawPixmap(boundingRect(), pixmap, QRectF(0.0, 0.0, ));
 }
 
-Object* ObjectGraphics::object()
+Object *ObjectGraphics::object()
 {
 	return object_;
 }

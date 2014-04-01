@@ -26,22 +26,23 @@ FieldGraphics::FieldGraphics(QGraphicsItem* parent, QVector< QString >* pathsToI
 
 QRectF FieldGraphics::boundingRect() const
 {
-	return QRectF(Field::Size.x(), Field::Size.y() + (QPointF(Field::Size)) * 2);
+	//FIXME AGAIN
+// 	return QRectF(Field::size().x(), Field::size().y() + (QPointF(Field::size())) * 2);
 }
 
-Field* FieldGraphics::field()
+Field *FieldGraphics::field()
 {
 	return field_;
 }
 
-Object* FieldGraphics::object()
+Object *FieldGraphics::object()
 {
 	return field_;
 }
 
 QPointF FieldGraphics::size()
 {
-	return Field::Size;
+	return Field::size();
 }
 
 

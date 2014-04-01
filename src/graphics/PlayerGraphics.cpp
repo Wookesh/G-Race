@@ -18,7 +18,7 @@
 
 #include "PlayerGraphics.hpp"
 
-PlayerGraphics::PlayerGraphics(QGraphicsItem* parent, QVector< QString >* pathsToImages, Player* player): 
+PlayerGraphics::PlayerGraphics(QGraphicsItem *parent, QVector<QString> *pathsToImages, Player *player): 
 		ObjectGraphics(parent, pathsToImages), player_(player)
 {
 	
@@ -26,20 +26,21 @@ PlayerGraphics::PlayerGraphics(QGraphicsItem* parent, QVector< QString >* pathsT
 
 QRectF PlayerGraphics::boundingRect() const
 {
-	return QRectF(Player::Size.x(), Player::Size.y() + QPointF(Player::Size) * 2);
+	//FIXME co to?
+// 	return QRectF(Player::size().x(), Player::size().y() + QPointF(Player::size()) * 2);
 }
 
-Player* PlayerGraphics::player()
+Player *PlayerGraphics::player()
 {
 	return player_;
 }
 
 QPointF size() 
 {
-	return Player::Size;
+	return Player::size();
 }
 
-Object* PlayerGraphics::object()
+Object *PlayerGraphics::object()
 {
 	return player_;
 }
