@@ -24,14 +24,18 @@
 #include <QGraphicsItem>
 #include <QStyleOptionGraphicsItem>
 #include <QPainter>
+#include "../logic/Object.hpp"
 
 class ObjectGraphics : public QGraphicsItem {
 public :
 	ObjectGraphics(QGraphicsItem *parent = 0, QVector<QString> *pathsToImages = 0);
 	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
-			QWidget *widget, QString pathToImage, QPointF size);
-private:
+			QWidget *widget);
+	virtual QPointF size();
+	Object* object();
+protected:
 	QVector<QPixmap> pixMaps_;
+	Object *object_;
 };
 
 #endif

@@ -25,14 +25,16 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QGraphicsItem>
+#include "../logic/CollisionDetector.hpp"
 
-class Scene : public QGraphicsScene {
+class Scene : public QGraphicsScene, public CollisionDetector {
 	Q_OBJECT
 public :
 	explicit Scene(QWidget * parent = 0, Qt::WindowFlags f = 0);
+	QList<Object *> collidingFields(QPointF, QPointF) const;
 private :
-	const PlayerGraphics *MainPlayer_;
-	const QSet<const PlayerGraphics *> players_;
+	PlayerGraphics *MainPlayer_;
+	QSet<PlayerGraphics *> players_;
 public slots :
 	void setPause(bool);
 	void render(); // renderuje

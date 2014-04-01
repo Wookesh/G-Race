@@ -29,11 +29,14 @@ ObjectGraphics::ObjectGraphics(QGraphicsItem* parent, QVector< QString > *pathsT
 }
 
 void ObjectGraphics::paint(QPainter* painter, const QStyleOptionGraphicsItem* option,
-				QWidget* widget, QPixmap pixmap)
+				QWidget* widget)
 {
 	Q_UNUSED(option);
 	Q_UNUSED(widget);
-	painter->drawPixmap(boundingRect(), pixmap, QRectF(0.0, 0.0, pixmap.width(), pixmap.height()));
+	painter->drawPixmap(boundingRect(), pixmap, QRectF(0.0, 0.0, ));
 }
 
-
+Object* ObjectGraphics::object()
+{
+	return object_;
+}

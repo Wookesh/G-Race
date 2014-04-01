@@ -16,31 +16,9 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include "PlayerGraphics.hpp"
+#ifndef MOVING_OBJECTS_HPP
+#define MOVING_OBJECTS_HPP
 
-PlayerGraphics::PlayerGraphics(QGraphicsItem* parent, QVector< QString >* pathsToImages, Player* player): 
-		ObjectGraphics(parent, pathsToImages), player_(player)
-{
-	
-}
+//później po nich będzie dziedziczyć np Player i jakies cwane pola. taki interfejs
 
-QRectF PlayerGraphics::boundingRect() const
-{
-	return QRectF(Player::Size.x(), Player::Size.y() + QPointF(Player::Size) * 2);
-}
-
-Player* PlayerGraphics::player()
-{
-	return player_;
-}
-
-QPointF size() 
-{
-	return Player::Size;
-}
-
-Object* PlayerGraphics::object()
-{
-	return player_;
-}
-
+#endif

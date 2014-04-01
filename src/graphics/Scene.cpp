@@ -17,3 +17,56 @@
  */
 
 #include "Scene.hpp"
+
+Scene::Scene(QWidget* parent, Qt::WindowFlags f): QGraphicsScene(parent, f)
+{
+
+}
+
+
+QList< Object* > Scene::collidingFields(QPointF corner, QPointF size) const
+{
+	QList<Object *> list;
+	for(QGraphicsItem *item: QGraphicsScene::items(QRectF(corner, size)))
+		list.insert(static_cast<ObjectGraphics*>(item)->object());
+
+	return list;
+}
+
+void Scene::start()
+{
+	
+}
+
+void Scene::finish()
+{
+
+}
+
+void Scene::render()
+{
+
+}
+
+void Scene::setPlayer(Player* p)
+{
+	MainPlayer_ = PlayerGraphics(QGraphicsItem(), QVector<QString>*, p);
+}
+
+void Scene::setEnemies(QSet< Player >* set)
+{
+	for (Player *p : set)
+		players_.insert(PlayerGraphics(QGraphicsItem(), QVector<QString>*, p));
+}
+void Scene::setMap(QGraphicsScene* )
+{
+
+}
+
+void Scene::setPause(bool )
+{
+
+}
+
+
+

@@ -26,7 +26,9 @@ class PlayerGraphics : public ObjectGraphics {
 public :
 	explicit PlayerGraphics(QGraphicsItem *parent = 0, QVector<QString> *pathsToImages = 0, Player* player = 0);
 	QRectF boundingRect() const override;
+	QPointF size() override;
 	Player *player();
+	Object *object();
 private :
 	Player *player_;
 };
