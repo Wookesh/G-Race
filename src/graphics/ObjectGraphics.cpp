@@ -16,19 +16,24 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#ifndef PLAYER_GRAPHICS_HPP
-#define PLAYER_GRAPHICS_HPP
-
 #include "ObjectGraphics.hpp"
-#include "../logic/Player.hpp"
 
-class PlayerGraphics : public ObjectGraphics {
-public :
-	explicit PlayerGraphics(QGraphicsItem *parent = 0, QVector<QString> *pathsToImages = 0, Player* player = 0);
-	QRectF boundingRect() const override;
-	Player *player();
-private :
-	Player *player_;
-};
 
-#endif
+ObjectGraphics::ObjectGraphics(QGraphicsItem* parent, QVector< QString > *pathsToImages): 
+	QGraphicsItem(parent)
+{
+	for(QString path: *pathsToImages)
+	{
+		this->pixMaps_.insert(QPixmap(path));
+	}
+}
+
+void ObjectGraphics::paint(QPainter* painter, const QStyleOptionGraphicsItem* option,
+				QWidget* widget, QPixmap pixmap)
+{
+	Q_UNUSED(option);
+	Q_UNUSED(widget);
+	painter->drawPixmap(boundingRect(), pixmap, QRectF(0.0, 0.0, pixmap.width(), pixmap.height()));
+}
+
+
