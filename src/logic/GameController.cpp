@@ -24,32 +24,17 @@ GameController::GameController(QObject *parent): QObject(parent)
 	QObject::connect(timer_, &QTimer::timeout, this, &GameController::timeout);
 }
 
-void GameController::initGame()
-{
-// 	SceneFactory factory;
-// 	QString map("##########\n"
-// 					"#        #\n"
-// 					"#        #\n"
-// 					"##########\n");
-// 	scene_ = factory.createScene(map);
-// 	players_.insert(new PlayerGraphics(new Player("Andrzej")));
-// 	for (PlayerGraphics *player : players_) {
-// 		scene_->addItem(player);
-// 		player->setPos(64.0, 48.0);
-// 	}
-}
-
-QGraphicsScene *GameController::scene()
-{
-	return scene_;
-}
-
-
 void GameController::setState(GameController::State state)
 {
 	//TODO
 	state_ = state;
 }
+
+void GameController::setCollisionDetector(CollisionDetector* collisionDetector)
+{
+	collisionDetector_ = collisionDetector;
+}
+
 
 void GameController::addPlayer(Player *player)
 {
@@ -79,6 +64,7 @@ void GameController::stopTimer()
 
 void GameController::timeout()
 {
+	qreal dx, dy;
 	for (Player *player : players_) {
 		switch (player->state()) {
 			case Player::State::Pushing :
@@ -86,7 +72,17 @@ void GameController::timeout()
 				break;
 			}
 			case Player::State::Running : {
-				
+				dx = Player::BaseSpeed;
+				QList<Object *> list = collisionDetector_->collidingFields(player->position() + QPointF(dx, 0.0),
+																							  QPointF(Player::Size));
+				list.removeOne(player);
+				if (!list.isEmpty()) {
+					for (Object * object : list) {
+						object->onStep(player);
+					}
+				} else {
+					player->setPosition(player->position() + QPointF(dx, 0.0));
+				}
 				break;
 			}
 		}

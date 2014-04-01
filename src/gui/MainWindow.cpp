@@ -36,7 +36,6 @@ MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags flags): QMainWindow(pare
 void MainWindow::createLayout()
 {
 	placeholder = new QWidget(this);
-	gameController->initGame();
 	view = new QGraphicsView();
 	setCentralWidget(view);
 }

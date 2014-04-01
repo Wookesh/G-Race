@@ -22,10 +22,10 @@
 #include <QObject>
 #include <QSet>
 #include <QTimer>
-#include <QtWidgets/QGraphicsScene>
 #include "GRaceCommon.hpp"
 #include "Player.hpp"
 #include "Field.hpp"
+#include "CollisionDetector.hpp"
 
 class GameController : public QObject {
 	Q_OBJECT
@@ -45,15 +45,13 @@ public :
 	void addPlayer(Player *player);
 	QSet<Player*> players() const;
 	
+	void setCollisionDetector(CollisionDetector *collisionDetector);
+	
 	void reset();
 	void startGame();
-	void initGame();
-	
-	QGraphicsScene *scene();
 	
 	static const int MaxPlayers = 4;
 	static const int Frames = 30;
-	static constexpr qreal baseSpeed = 1.0;
 	
 private :
 	State state_;
@@ -61,7 +59,7 @@ private :
 	QSet<Player *> players_;
 	bool renderDone_;
 	
-	QGraphicsScene *scene_;
+	CollisionDetector *collisionDetector_;
 	
 	void setState(State state);
 	void runTimer();

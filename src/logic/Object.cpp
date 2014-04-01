@@ -16,54 +16,19 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#ifndef PLAYER_HPP
-#define PLAYER_HPP
-#include <QPointF>
-#include <QString>
-#include "GRaceCommon.hpp"
 #include "Object.hpp"
 
-/**
- * Player
- * position is position of top-left corner of player box 
- */
-class Player : public Object {
-public :
-	
-	enum class State : qint8 {
-		Running,
-		Stuned,
-		Pushing,
-	};
-	
-	Player(QString name);
+Object::Object(QPointF position)
+{
+	setPosition(position);
+}
 
-	QString name() const;
-	
-	Gravity gravity() const;
-	void setGravity(Gravity gravity);
-	
-	bool isFalling() const;
-	void setFalling(bool falling);
-	
-	State state() const;
-	void setState(State state);
-	
-	qreal bonusSpeed() const;
-	void setBonusSpeed(qreal bonusSpeed);
-	
-	void onStep(Object *object) override;
-	
-	static constexpr QPointF Size = QPointF(32.0, 48.0);
-	static constexpr qreal BaseSpeed = 1.0;
-	
-private :
-	QString name_;
-	Gravity gravity_;
-	bool falling_;
-	State state_;
-	qreal bonusSpead_;
-};
+QPointF Object::position() const
+{
+	return position_;
+}
 
-
-#endif
+void Object::setPosition(QPointF position)
+{
+	position_ = position;
+}
