@@ -26,7 +26,7 @@ PlayerGraphics::PlayerGraphics(QGraphicsItem* parent, QVector< QString >* pathsT
 
 QRectF PlayerGraphics::boundingRect() const
 {
-	return QRectF(Player::Size/2, Player::Size/2 + QPointF(Player::Size) * 2);
+	return QRectF(Player::Size.x()/2, Player::Size.y()/2 + QPointF(Player::Size) * 2);
 }
 
 Player* PlayerGraphics::player()
