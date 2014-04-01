@@ -26,7 +26,7 @@ FieldGraphics::FieldGraphics(QGraphicsItem* parent, QVector< QString >* pathsToI
 
 QRectF FieldGraphics::boundingRect() const
 {
-	return QRectF(Field::Size/2, Field::Size/2 + (QPointF(Field::Size)) * 2);
+	return QRectF(Field::Size.x()/2, Field::Size.y()/2 + (QPointF(Field::Size)) * 2);
 }
 
 
