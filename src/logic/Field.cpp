@@ -17,11 +17,18 @@
  */
 
 #include "Field.hpp"
+#include "Player.hpp"
 
 Field::Field(bool transparent): transparent_(transparent)
 {
 	
 }
+
+void Field::onStep(Object* object)
+{
+	object->setPosition(this->position() - QPointF(Player::Size.x(), 0.0));
+}
+
 
 bool Field::isTransparent()
 {

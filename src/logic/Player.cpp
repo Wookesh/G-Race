@@ -18,27 +18,14 @@
 
 #include "Player.hpp"
 
-Player::Player(QString name) : name_(name), gravity_(Gravity::Down), position_(QPointF(0, 0))
+Player::Player(QString name) : Object(), name_(name), gravity_(Gravity::Down)
 {
-}
-
-Player::Player(const Player &other) : name_(other.name_), gravity_(other.gravity_), position_(other.position_)
-{
+	
 }
 
 QString Player::name() const
 {
 	return name_;
-}
-
-QPointF Player::position() const
-{
-	return position_;
-}
-
-void Player::setPosition(QPointF position)
-{
-	position_ = position;
 }
 
 Gravity Player::gravity() const
@@ -69,6 +56,11 @@ Player::State Player::state() const
 void Player::setState(Player::State state)
 {
 	state_ = state;
+}
+
+void Player::onStep(Object *object)
+{
+	object->setPosition(this->position() - QPointF(QPointF(Player::Size).x(), 0.0));
 }
 
 qreal Player::bonusSpeed() const

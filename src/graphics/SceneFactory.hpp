@@ -18,7 +18,7 @@
 
 #ifndef SCENE_FACTORY_HPP
 #define SCENE_FACTORY_HPP
-#include <QtWidgets/QGraphicsScene>
+#include "Scene.hpp"
 
 /**
  * SceneFactory
@@ -38,7 +38,7 @@ class SceneFactory {
 public :
 	explicit SceneFactory();
 	
-	QGraphicsScene * createScene(QString map);
+	Scene * createScene(QString map);
 // 	QDataStream &operator<<(QDataStream &out);
 // 	QDataStream &operator>>(QDataStream &in);
 };

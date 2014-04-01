@@ -19,15 +19,15 @@
 #ifndef FIELD_HPP
 #define FIELD_HPP
 
-#include "Player.hpp"
+#include "Object.hpp"
 
-class Field {
+class Field : public Object {
 public :
 	explicit Field(bool transparent = false);
 	bool isTransparent();
 	
+	virtual void onStep(Object *object);
 	static constexpr QPointF Size = QPointF(32.0, 32.0);
-// 	virtual void action(Player * player);
 private:
 	bool transparent_;
 };

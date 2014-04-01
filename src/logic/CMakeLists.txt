@@ -1,4 +1,5 @@
 add_library(logic
+	Object.cpp
 	Player.cpp
 	Field.cpp
 	GameController.cpp

@@ -31,7 +31,7 @@ class Scene : public QGraphicsScene {
 public :
 	explicit Scene(QWidget * parent = 0, Qt::WindowFlags f = 0);
 private :
-	const PlayerGraphics * MainPlayer_;
+	const PlayerGraphics *MainPlayer_;
 	const QSet<const PlayerGraphics *> players_;
 public slots :
 	void setPause(bool);

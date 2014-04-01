@@ -27,11 +27,11 @@ SceneFactory::SceneFactory()
 
 
 //FIXME Later
-QGraphicsScene *SceneFactory::createScene(QString map)
+Scene *SceneFactory::createScene(QString map)
 {
 	if (map.isEmpty() || !map.contains('\n'))
 		return nullptr;
-	QGraphicsScene *scene = new QGraphicsScene();
+	Scene *scene = new Scene();
 	
 	qreal x = 0.0;
 	qreal y = 0.0;
