@@ -19,15 +19,12 @@
 #include "Scene.hpp"
 
 Scene::Scene(QWidget *parent): 
-	QGraphicsScene(parent), view_(new QGraphicsView(this))
+	QGraphicsScene(parent)
 {
-	view_->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	view_->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 }
 
 Scene::~Scene()
 {
-	delete view_;
 }
 
 
@@ -50,32 +47,26 @@ void Scene::finish()
 
 }
 
-void Scene::render()
+void Scene::updatePos()
 {
-	view_->centerOn(mainPlayer_);
-	emit doneRender();
+	for (MovingObject *object: movingObjects_){
+		object->updatePos();
+	}
+	emit renderView();
 }
 
-void Scene::setPlayer(Player *p)
-{
-	//FIXME chyba nie o taki konstruktor wam chodziło...
-// 	MainPlayer_ = PlayerGraphics(QGraphicsItem(), QVector<QString>*, p);
-	QVector<QString> paths;
-	paths.push_back("../textures/crate.jpg");
-	mainPlayer_ = new PlayerGraphics(&paths, p);
-}
 
-void Scene::setEnemies(QSet<Player*>* set)
+void Scene::setPlayers(QSet<Player*>* set)
 {
 	QVector<QString> paths;
 	paths.push_back("../textures/crate.jpg"); //TODO zrobić różne obrazki
 	for (Player *p: *set){
-		enemies_.insert(new PlayerGraphics(&paths, p));}
+		PlayerGraphics newPlayerGraphics(&paths, p);
+		players_.insert(&newPlayerGraphics);
+		movingObjects_.insert(&newPlayerGraphics);
+	}
 }
-void Scene::setMap(QGraphicsScene* )
-{
 
-}
 
 void Scene::setPause(bool )
 {

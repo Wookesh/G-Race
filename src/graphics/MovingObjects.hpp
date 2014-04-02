@@ -21,4 +21,10 @@
 
 //później po nich będzie dziedziczyć np Player i jakies cwane pola. taki interfejs
 
+class MovingObject{
+public:
+	virtual void updatePos() = 0;
+};
+
+
 #endif

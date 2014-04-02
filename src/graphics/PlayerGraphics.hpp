@@ -20,15 +20,18 @@
 #define PLAYER_GRAPHICS_HPP
 
 #include "ObjectGraphics.hpp"
+#include "MovingObjects.hpp"
 #include "../logic/Player.hpp"
 
-class PlayerGraphics : public ObjectGraphics {
+
+class PlayerGraphics : public ObjectGraphics, public MovingObject {
 public :
 	explicit PlayerGraphics(QVector<QString> *pathsToImages = 0, Player* player = 0, QGraphicsItem *parent = 0);
 	//QRectF boundingRect() const override;
 	QPointF size() override;
 	Player *player();
 	Object *object();
+	virtual void updatePos() override;
 private :
 	Player *player_;
 };

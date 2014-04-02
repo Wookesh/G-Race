@@ -26,6 +26,7 @@
 #include <QGraphicsItem>
 #include "ObjectGraphics.hpp"
 #include "PlayerGraphics.hpp"
+#include "MovingObjects.hpp"
 #include "../logic/CollisionDetector.hpp"
 
 class Scene : public QGraphicsScene, public CollisionDetector {
@@ -35,19 +36,17 @@ public :
 	QList<Object *> collidingFields(QPointF, QPointF) const;
 	~Scene();
 private :
-	PlayerGraphics *mainPlayer_;
-	QSet<PlayerGraphics *> enemies_;
-	QGraphicsView *view_;
+	QSet<PlayerGraphics *> players_;
+	QSet<MovingObject *> movingObjects_;
 public slots :
 	void setPause(bool);
-	void render(); // renderuje
+	void updatePos(); // renderuje
 	void start();
 	void finish();
-	void setPlayer(Player*);
-	void setEnemies(QSet<Player*>*);
-	void setMap(QGraphicsScene*);
+	void setPlayers(QSet<Player*>*);
 signals :
-	void doneRender();
+	//void doneRender();
+	void renderView();
 };
 
 

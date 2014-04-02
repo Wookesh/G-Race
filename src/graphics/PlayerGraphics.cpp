@@ -46,3 +46,9 @@ Object *PlayerGraphics::object()
 	return player_;
 }
 
+void PlayerGraphics::updatePos()
+{
+	setPos(player_->position());
+}
+
+

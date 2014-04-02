@@ -47,5 +47,5 @@ QRectF ObjectGraphics::boundingRect() const
 {
 	//FIXME co to?
 // 	return QRectF(Player::size().x(), Player::size().y() + QPointF(Player::size()) * 2);
-	return QRectF(object_->position(), object_->size());
+	return QRectF(QPointF(0.0, 0.0), object_->size());
 }
