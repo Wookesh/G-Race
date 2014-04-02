@@ -20,13 +20,13 @@
 #define VIEW_HPP
 
 #include <QGraphicsView>
-#include "Scene.hpp"
+#include "PlayerGraphics.hpp"
 
-class View : public QGraphicsView{
+class View : public QGraphicsView {
 	Q_OBJECT
 public :
 	explicit View(QWidget *parent = 0);
-	explicit View(QGraphicsScene * scene, QWidget *parent = 0);
+	explicit View(QGraphicsScene *scene, QWidget *parent = 0);
 private :
 	PlayerGraphics *mainPlayer_;
 	void setScrollBars();

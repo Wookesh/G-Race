@@ -27,6 +27,7 @@
  * 
  *  "#############\n" + 
  *  "#           #\n" +
+ *  "#           #\n" +
  *  "#############\n";
  * 
  * scene*
@@ -38,7 +39,9 @@ class SceneFactory {
 public :
 	explicit SceneFactory();
 	
-	Scene * createScene(QString map);
+	static QString test1();
+	
+	Scene *createScene(QString map);
 // 	QDataStream &operator<<(QDataStream &out);
 // 	QDataStream &operator>>(QDataStream &in);
 };

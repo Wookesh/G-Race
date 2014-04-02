@@ -37,6 +37,7 @@ public :
 	};
 	
 	Player(QString name);
+	Player(QString name, QPointF position = QPointF(0.0, 0.0));
 
 	QString name() const;
 	

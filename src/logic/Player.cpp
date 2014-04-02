@@ -18,9 +18,9 @@
 
 #include "Player.hpp"
 
-Player::Player(QString name) : Object(), name_(name), gravity_(Gravity::Down)
+Player::Player(QString name, QPointF position) : Object(position), name_(name), gravity_(Gravity::Down),
+																 state_(State::Running), bonusSpead_(0.0)
 {
-	
 }
 
 QString Player::name() const

@@ -17,16 +17,15 @@
  */
 
 #include "ObjectGraphics.hpp"
+#include <QDebug>
 
 
-ObjectGraphics::ObjectGraphics(QVector< QString >* pathsToImages, QGraphicsItem* parent): 
+ObjectGraphics::ObjectGraphics(QVector<QString> *pathsToImages, QGraphicsItem *parent): 
 	QGraphicsItem(parent)
 {
 	for(QString path: *pathsToImages)
-	{
-		//NOTE chyba chodziło o to
 		this->pixMaps_.push_back(QPixmap(path));
-	}
+	
 	this->currentPixMap_ = &(pixMaps_.first());
 }
 
@@ -34,9 +33,14 @@ void ObjectGraphics::paint(QPainter *painter, const QStyleOptionGraphicsItem *op
 {
 	Q_UNUSED(option);
 	Q_UNUSED(widget);
-	//TODO
- 	painter->drawPixmap(boundingRect(), *currentPixMap_, boundingRect());
+	painter->drawPixmap(boundingRect(), *currentPixMap_, currentPixMap_->rect());
 }
+
+QPointF ObjectGraphics::size()
+{
+	return Object::size();
+}
+
 
 Object *ObjectGraphics::object()
 {
@@ -45,7 +49,5 @@ Object *ObjectGraphics::object()
 
 QRectF ObjectGraphics::boundingRect() const
 {
-	//FIXME co to?
-// 	return QRectF(Player::size().x(), Player::size().y() + QPointF(Player::size()) * 2);
-	return QRectF(QPointF(0.0, 0.0), object_->size());
+	return QRectF(QPointF(0.0, 0.0), Object::size());
 }

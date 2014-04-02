@@ -16,15 +16,9 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#ifndef MOVING_OBJECTS_HPP
-#define MOVING_OBJECTS_HPP
+#include "CollisionDetector.hpp"
 
-//później po nich będzie dziedziczyć np Player i jakies cwane pola. taki interfejs
+CollisionDetector::CollisionDetector()
+{
 
-class MovingObject{
-public:
-	virtual void updatePos() = 0;
-};
-
-
-#endif
+}

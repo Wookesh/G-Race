@@ -17,6 +17,7 @@
  */
 
 #include "Scene.hpp"
+#include <QDebug>
 
 Scene::Scene(QWidget *parent): 
 	QGraphicsScene(parent)
@@ -28,7 +29,7 @@ Scene::~Scene()
 }
 
 
-QList< Object* > Scene::collidingFields(QPointF corner, QPointF size) const
+QList<Object *> &Scene::collidingFields(QPointF corner, QPointF size) const
 {
 	QList<Object *> list;
 	for(QGraphicsItem *item: QGraphicsScene::items(QRectF(corner, size)))
@@ -49,21 +50,23 @@ void Scene::finish()
 
 void Scene::updatePos()
 {
-	for (MovingObject *object: movingObjects_){
+	for (MovingObject *object: movingObjects_) {
 		object->updatePos();
 	}
+	update();
 	emit renderView();
 }
 
 
-void Scene::setPlayers(QSet<Player*>* set)
+void Scene::setPlayers(const QSet<Player *> &set)
 {
 	QVector<QString> paths;
-	paths.push_back("../textures/crate.jpg"); //TODO zrobić różne obrazki
-	for (Player *p: *set){
-		PlayerGraphics newPlayerGraphics(&paths, p);
-		players_.insert(&newPlayerGraphics);
-		movingObjects_.insert(&newPlayerGraphics);
+	paths.push_back("../textures/andrzej.png"); //TODO zrobić różne obrazki
+	for (Player *p: set) {
+		PlayerGraphics  *newPlayerGraphics = new PlayerGraphics(&paths, p);
+		players_.insert(newPlayerGraphics);
+		movingObjects_.insert(newPlayerGraphics);
+		QGraphicsScene::addItem(newPlayerGraphics);
 	}
 }
 

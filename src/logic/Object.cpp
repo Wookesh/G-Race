@@ -18,9 +18,8 @@
 
 #include "Object.hpp"
 
-Object::Object(QPointF position)
+Object::Object(QPointF position) : position_(position)
 {
-	setPosition(position);
 }
 
 QPointF Object::position() const
@@ -30,7 +29,7 @@ QPointF Object::position() const
 
 QPointF Object::size()
 {
-	static QPointF point = QPointF(32.0, 48.0);
+	static QPointF point = QPointF(32.0, 32.0);
 	return point;
 }
 

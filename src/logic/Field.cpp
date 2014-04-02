@@ -18,6 +18,7 @@
 
 #include "Field.hpp"
 #include "Player.hpp"
+#include <QDebug>
 
 Field::Field(bool transparent): transparent_(transparent)
 {
@@ -26,13 +27,15 @@ Field::Field(bool transparent): transparent_(transparent)
 
 QPointF Field::size()
 {
-	static QPointF point = QPointF(32.0, 48.0);
+	static QPointF point = QPointF(32.0, 32.0);
 	return point;
 }
 
 void Field::onStep(Object* object)
 {
+	qDebug() << object->position();
 	object->setPosition(this->position() - QPointF(Player::size().x(), 0.0));
+	qDebug() << object->position();
 }
 
 bool Field::isTransparent()

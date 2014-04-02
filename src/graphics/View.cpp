@@ -20,7 +20,7 @@
 
 View::View(QWidget* parent): QGraphicsView(parent)
 {
-	setScrollBars();	
+	setScrollBars();
 }
 
 View::View(QGraphicsScene* scene, QWidget* parent):QGraphicsView(scene, parent)

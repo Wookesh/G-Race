@@ -19,11 +19,9 @@
 #include "MainWindow.hpp"
 #include <QApplication>
 #include <QMenuBar>
-
-#include <QGraphicsScene>
-#include <QGraphicsView>
-#include "../graphics/SceneFactory.hpp"
 #include <QDebug>
+
+#include "../graphics/SceneFactory.hpp"
 
 MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags flags): QMainWindow(parent, flags)
 {
@@ -36,8 +34,9 @@ MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags flags): QMainWindow(pare
 void MainWindow::createLayout()
 {
 	placeholder = new QWidget(this);
-	view = new QGraphicsView();
+	view = new View(currentScene);
 	setCentralWidget(view);
+	gameController->startGame();
 }
 
 void MainWindow::createActions()
@@ -56,12 +55,19 @@ void MainWindow::createMenus()
 void MainWindow::createGameController()
 {
 	gameController = new GameController(this);
+	SceneFactory *sf = new SceneFactory();
+	currentScene = sf->createScene(SceneFactory::test1());
+	Player *player = new Player("Andrzej", QPointF(32.0, 48.0));
+	gameController->addPlayer(player);
+	gameController->setCollisionDetector(currentScene);
+	QSet<Player *> players;
+	players.insert(player);
+	currentScene->setPlayers(players);
+	connect(gameController, &GameController::render, currentScene, &Scene::updatePos);
 }
 
 void MainWindow::mousePressEvent(QMouseEvent* event)
 {
-	pg->moveBy(10.0, 0.0);
-	qDebug() << pg->pos() << field->pos();
 	QMainWindow::mousePressEvent(event);
 	
 }

@@ -17,6 +17,7 @@
  */
 
 #include "GameController.hpp"
+#include <QDebug>
 
 GameController::GameController(QObject *parent): QObject(parent)
 {
@@ -38,14 +39,13 @@ void GameController::setCollisionDetector(CollisionDetector* collisionDetector)
 
 void GameController::addPlayer(Player *player)
 {
-	//players_.insert(player);
+	players_.insert(player);
 }
 
 GameController::State GameController::state() const
 {
 	return state_;
 }
-
 
 QSet<Player *> GameController::players() const
 {
@@ -66,6 +66,7 @@ void GameController::timeout()
 {
 	qreal dx, dy;
 	for (Player *player : players_) {
+		qDebug() << player->name() << player->position();
 		switch (player->state()) {
 			case Player::State::Pushing :
 			case Player::State::Stuned : {

@@ -19,11 +19,12 @@
 #include <QMainWindow>
 #include <QAction>
 #include <QMenu>
-#include "../logic/GameController.hpp"
 #include <QMouseEvent>
-#include "../graphics/PlayerGraphics.hpp"
-#include "../graphics/FieldGraphics.hpp"
-#include <QGraphicsView>
+
+#include "../logic/GameController.hpp"
+
+#include "../graphics/Scene.hpp"
+#include "../graphics/View.hpp"
 
 class MainWindow : public QMainWindow {
 	Q_OBJECT
@@ -33,14 +34,13 @@ protected:
 	void mousePressEvent(QMouseEvent * event);
 private :
 	
-	GameController * gameController;
-	PlayerGraphics * pg;
-	FieldGraphics * field;
-	QGraphicsView * view;
+	GameController *gameController;
+	Scene *currentScene;
+	View *view;
 	
-	QWidget * placeholder;
-	QAction * exit;
-	QMenu * menu;
+	QWidget *placeholder;
+	QAction *exit;
+	QMenu *menu;
 	void createMenus();
 	void createActions();
 	void createLayout();

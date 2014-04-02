@@ -25,6 +25,15 @@ SceneFactory::SceneFactory()
 	
 }
 
+QString SceneFactory::test1()
+{
+	return  QString("#############\n"
+						 "#           #\n"
+						 "#           #\n"
+						 "#############\n");
+}
+
+
 
 //FIXME Later
 Scene *SceneFactory::createScene(QString map)
@@ -32,34 +41,31 @@ Scene *SceneFactory::createScene(QString map)
 	if (map.isEmpty() || !map.contains('\n'))
 		return nullptr;
 	Scene *scene = new Scene();
+	QVector<QString> graphics;
+	graphics.push_front(QString("../textures/crate.jpg"));
 	
 	qreal x = 0.0;
 	qreal y = 0.0;
-// 	qreal length = map.indexOf('\n') * QPointF(Field::Size).x();
-// 	qreal height = map.lastIndexOf('\n') * QPointF(Field::Size).y() / length;
-// 	scene->setSceneRect(QRectF(0.0, 0.0, length, height));
 	for (QChar c : map) {
 		ushort ch  = c.unicode();
 		switch (ch) {
 			case '#' : {
-				FieldGraphics *field = new FieldGraphics(new Field());
+				FieldGraphics *field = new FieldGraphics(&graphics, new Field());
 				field->setPos(x, y);
-				qDebug() << field->boundingRect();
 				scene->addItem(field);
-				x += QPointF(Field::Size).x();
+				x += Field::size().x();
 				break;
 			}
 			case ' ': {
-				x += QPointF(Field::Size).x();
+				x += Field::size().x();
 				break;
 			}
 			case '\n': {
 				x = 0.0;
-				y += QPointF(Field::Size).y();
+				y += Field::size().y();
 				break;
 			}
 		}
-		qDebug() << x << y;
 	}
 
 	return scene;

@@ -16,17 +16,16 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#ifndef COLLISION_DETECTOR_HPP
-#define COLLISION_DETECTOR_HPP
+#ifndef MOVING_OBJECT_HPP
+#define MOVING_OBJECT_HPP
 
-#include <QPointF>
-#include <QList>
-#include "Object.hpp"
+//później po nich będzie dziedziczyć np Player i jakies cwane pola. taki interfejs
 
-class CollisionDetector {
-public :
-	CollisionDetector();
-	virtual QList<Object *> &collidingFields(QPointF, QPointF) const = 0;
+class MovingObject {
+public:
+	MovingObject();
+	virtual void updatePos() = 0;
 };
+
 
 #endif

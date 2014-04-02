@@ -17,19 +17,24 @@
  */
 
 #include "PlayerGraphics.hpp"
+#include <QDebug>
 
-PlayerGraphics::PlayerGraphics(QVector< QString >* pathsToImages, Player* player, QGraphicsItem* parent): 
+PlayerGraphics::PlayerGraphics(QVector<QString> *pathsToImages, Player *player, QGraphicsItem *parent): 
 		ObjectGraphics(pathsToImages, parent), player_(player)
 {
-	
+	setPos(player->position());
 }
 
-// QRectF PlayerGraphics::boundingRect() const
-// {
-// 	//FIXME co to?
-// // 	return QRectF(Player::size().x(), Player::size().y() + QPointF(Player::size()) * 2);
-// 	return QRectF(player_->position(), player_->size());
-// }
+QPointF PlayerGraphics::size()
+{
+    return Player::size();
+}
+
+
+QRectF PlayerGraphics::boundingRect() const
+{
+	return QRectF(QPointF(0.0, 0.0), Player::size());
+}	
 
 Player *PlayerGraphics::player()
 {
