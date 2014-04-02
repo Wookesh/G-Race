@@ -18,17 +18,19 @@
 
 #include "FieldGraphics.hpp"
 
-FieldGraphics::FieldGraphics(QGraphicsItem* parent, QVector< QString >* pathsToImages, Field* field):
-	ObjectGraphics(parent, pathsToImages), field_(field)
+FieldGraphics::FieldGraphics(QVector< QString >* pathsToImages, Field* field, QGraphicsItem* parent):
+	ObjectGraphics(pathsToImages, parent), field_(field)
 {
 	
 }
 
-QRectF FieldGraphics::boundingRect() const
-{
-	//FIXME AGAIN
-// 	return QRectF(Field::size().x(), Field::size().y() + (QPointF(Field::size())) * 2);
-}
+// QRectF FieldGraphics::boundingRect() const
+// {
+// 	//FIXME AGAIN
+// // 	return QRectF(Field::size().x(), Field::size().y() + (QPointF(Field::size())) * 2);
+// 
+// 	return QRectF(field_->position(), field_->size());
+// }
 
 Field *FieldGraphics::field()
 {

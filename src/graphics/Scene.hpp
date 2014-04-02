@@ -33,16 +33,18 @@ class Scene : public QGraphicsScene, public CollisionDetector {
 public :
 	explicit Scene(QWidget *parent = 0);
 	QList<Object *> collidingFields(QPointF, QPointF) const;
+	~Scene();
 private :
-	PlayerGraphics *MainPlayer_;
-	QSet<PlayerGraphics *> players_;
+	PlayerGraphics *mainPlayer_;
+	QSet<PlayerGraphics *> enemies_;
+	QGraphicsView *view_;
 public slots :
 	void setPause(bool);
 	void render(); // renderuje
 	void start();
 	void finish();
 	void setPlayer(Player*);
-	void setEnemies(QSet<Player>*);
+	void setEnemies(QSet<Player*>*);
 	void setMap(QGraphicsScene*);
 signals :
 	void doneRender();

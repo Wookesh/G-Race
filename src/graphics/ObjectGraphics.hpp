@@ -28,13 +28,15 @@
 
 class ObjectGraphics : public QGraphicsItem {
 public :
-	ObjectGraphics(QGraphicsItem *parent = 0, QVector<QString> *pathsToImages = 0);
+	ObjectGraphics(QVector<QString> *pathsToImages = 0, QGraphicsItem *parent = 0);
 	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 	virtual QPointF size();
 	Object *object();
+	virtual QRectF boundingRect() const override;
 protected:
 	QVector<QPixmap> pixMaps_;
 	Object *object_;
+	QPixmap *currentPixMap_; //raczej temp
 };
 
 #endif
