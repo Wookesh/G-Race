@@ -28,7 +28,7 @@ public :
 	//virtual QRectF boundingRect() const override;
 	Field *field();
 	QPointF size();
-	Object *object();
+	virtual Object *object();
 private :
 	Field *field_;
 };

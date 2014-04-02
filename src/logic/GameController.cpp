@@ -76,9 +76,13 @@ void GameController::timeout()
 				dx = Player::BaseSpeed;
 				QList<Object *> list = collisionDetector_->collidingFields(player->position() + QPointF(dx, 0.0),
 																							  Player::size());
-				list.removeOne(player);
+				qDebug() << list.size();
+// 				list.removeOne(player);
+// 				qDebug() << list.size();
 				if (!list.isEmpty()) {
-					for (Object * object : list) {
+					for (Object *object : list) {
+						qDebug() << "object";
+						qDebug() << object << player;
 						object->onStep(player);
 					}
 				} else {

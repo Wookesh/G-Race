@@ -29,12 +29,13 @@ Scene::~Scene()
 }
 
 
-QList<Object *> &Scene::collidingFields(QPointF corner, QPointF size) const
+QList<Object *> Scene::collidingFields(QPointF corner, QPointF size) const
 {
 	QList<Object *> list;
-	for(QGraphicsItem *item: QGraphicsScene::items(QRectF(corner, size)))
-		list.push_back(static_cast<ObjectGraphics*>(item)->object());
+	for (QGraphicsItem *item : QGraphicsScene::items(QPointF(corner.x() + size.x(), corner.y())))
+		list.push_back(static_cast<ObjectGraphics *>(item)->object());
 
+	qDebug() << list.size();
 	return list;
 }
 

@@ -57,7 +57,7 @@ void MainWindow::createGameController()
 	gameController = new GameController(this);
 	SceneFactory *sf = new SceneFactory();
 	currentScene = sf->createScene(SceneFactory::test1());
-	Player *player = new Player("Andrzej", QPointF(32.0, 48.0));
+	Player *player = new Player("Andrzej", QPointF(262.0, 48.0));
 	gameController->addPlayer(player);
 	gameController->setCollisionDetector(currentScene);
 	QSet<Player *> players;

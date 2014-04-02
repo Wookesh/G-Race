@@ -30,7 +30,7 @@ public :
 	QRectF boundingRect() const override;
 	QPointF size() override;
 	Player *player();
-	Object *object();
+	virtual Object *object();
 	virtual void updatePos() override;
 private :
 	Player *player_;

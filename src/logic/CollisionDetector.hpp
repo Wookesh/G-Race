@@ -26,7 +26,7 @@
 class CollisionDetector {
 public :
 	CollisionDetector();
-	virtual QList<Object *> &collidingFields(QPointF, QPointF) const = 0;
+	virtual QList<Object *> collidingFields(QPointF, QPointF) const = 0;
 };
 
 #endif

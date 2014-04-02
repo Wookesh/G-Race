@@ -34,7 +34,7 @@ QPointF Field::size()
 void Field::onStep(Object* object)
 {
 	qDebug() << object->position();
-	object->setPosition(this->position() - QPointF(Player::size().x(), 0.0));
+// 	object->setPosition(object->position());
 	qDebug() << object->position();
 }
 
