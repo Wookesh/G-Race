@@ -24,13 +24,6 @@ FieldGraphics::FieldGraphics(QVector< QString >* pathsToImages, Field* field, QG
 	
 }
 
-// QRectF FieldGraphics::boundingRect() const
-// {
-// 	//FIXME AGAIN
-// // 	return QRectF(Field::size().x(), Field::size().y() + (QPointF(Field::size())) * 2);
-// 
-// 	return QRectF(field_->position(), field_->size());
-// }
 
 Field *FieldGraphics::field()
 {
