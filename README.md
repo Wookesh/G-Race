@@ -35,7 +35,7 @@ $mkdir build && cd build
 $cmake .. && make
 
 Uruchamianie:
-(z katalogu G-Race)
+(z katalogu G-Race/build)
 
 $./bin/G-Race
 
