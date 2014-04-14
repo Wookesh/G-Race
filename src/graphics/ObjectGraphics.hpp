@@ -33,6 +33,7 @@ public :
 	virtual QPointF size();
 	virtual Object *object();
 	virtual QRectF boundingRect() const override;
+	virtual QPainterPath shape() const override;
 protected:
 	QVector<QPixmap> pixMaps_;
 	Object *object_;

@@ -40,6 +40,19 @@ QPointF FieldGraphics::size()
 	return Field::size();
 }
 
+QRectF FieldGraphics::boundingRect() const
+{
+	return QRectF(QPointF(0.0, 0.0), Field::size());
+}
+
+QPainterPath FieldGraphics::shape() const
+{
+	QPainterPath path;
+	path.addRect(boundingRect());
+	return path;
+}
+
+
 
 
 

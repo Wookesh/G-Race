@@ -51,3 +51,11 @@ QRectF ObjectGraphics::boundingRect() const
 {
 	return QRectF(QPointF(0.0, 0.0), Object::size());
 }
+
+QPainterPath ObjectGraphics::shape() const
+{
+	QPainterPath path;
+	path.addRect(boundingRect());
+	return path;
+}
+

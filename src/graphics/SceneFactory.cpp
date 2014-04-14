@@ -27,10 +27,12 @@ SceneFactory::SceneFactory()
 
 QString SceneFactory::test1()
 {
-	return  QString("#############\n"
-						 "#           #\n"
-						 "#           #\n"
-						 "#############\n");
+	return  QString("##########################\n"
+						 "#                        #\n"
+						 "#                        #\n"
+						 "#               #        #\n"
+						 "#                        #\n"
+						 "##########   #############\n");
 }
 
 
