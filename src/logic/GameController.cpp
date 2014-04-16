@@ -75,15 +75,14 @@ void GameController::timeout()
 			case Player::State::Running : {
 				dx = Player::BaseSpeed;
 				QPointF newPos = player->position() + QPointF(dx, 0.0);
-				QList<Object *> list = collisionDetector_->collidingFields(newPos,
-																							  Player::size());
+				QList<Object *> list = collisionDetector_->collidingFields(newPos, player->size());
 				qDebug() << list.size();
 				list.removeOne(player);
 				if (!list.isEmpty()) {
 					for (Object *object : list) {
 						qDebug() << "object";
 						qDebug() << object << player;
-						object->onStep(player);
+						object->onStep(player, Direction::Right);
 					}
 				} else {
 					player->setPosition(player->position() + QPointF(dx, 0.0));
@@ -91,6 +90,23 @@ void GameController::timeout()
 				break;
 			}
 		}
+		dy = Player::BaseSpeed;
+		if(player->gravity() == Gravity::Up)
+			dy = -dy;
+		QPointF newPos = player->position() + QPointF(0.0, dy);
+		QList<Object *> list = collisionDetector_->collidingFields(newPos, player->size());
+		qDebug() << list.size();
+		list.removeOne(player);
+		if (!list.isEmpty()) {
+			for (Object *object : list) {
+				qDebug() << "object";
+				qDebug() << object << player;
+				object->onStep(player, player->gravity() == Gravity::Down ? Direction::Down : Direction::Up);
+			}
+		} else {
+			player->setPosition(player->position() + QPointF(0.0, dy));
+		}
+		
 	}
 	emit render();
 }

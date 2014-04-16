@@ -20,6 +20,9 @@
 #include "Player.hpp"
 #include <QDebug>
 
+
+constexpr QPointF Field::Size;
+
 Field::Field(bool transparent): transparent_(transparent)
 {
 	
@@ -27,13 +30,28 @@ Field::Field(bool transparent): transparent_(transparent)
 
 QPointF Field::size()
 {
-	static QPointF point = QPointF(32.0, 32.0);
-	return point;
+	return Size;
 }
 
-void Field::onStep(Object* object)
+void Field::onStep(Object* object, Direction dir)
 {
-	qDebug() << object->position();
+	qDebug() << "Field " << this->position();
+	switch (dir) {
+		case Direction::Right : {
+			object->setPosition(QPointF(this->position().x() - object->size().x() , object->position().y()));
+			break;
+		}
+		case Direction::Down : {
+			object->setPosition(QPointF(object->position().x() , this->position().y() - object->size().y()));
+			break;
+		}
+		case Direction::Up : {
+			object->setPosition(QPointF(object->position().x() , this->position().y() + this->size().y()));
+			break;
+		}
+	}
+	
+	
 // 	object->setPosition(object->position());
 	qDebug() << object->position();
 }

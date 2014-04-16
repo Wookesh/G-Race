@@ -32,7 +32,7 @@ QString SceneFactory::test1()
 						 "#                        #\n"
 						 "#               #        #\n"
 						 "#                        #\n"
-						 "##########   #############\n");
+						 "##########################\n");
 }
 
 
@@ -54,17 +54,18 @@ Scene *SceneFactory::createScene(QString map)
 			case '#' : {
 				FieldGraphics *field = new FieldGraphics(&graphics, new Field());
 				field->setPos(x, y);
+				field->field()->setPosition(field->pos());
 				scene->addItem(field);
-				x += Field::size().x();
+				x += Field::Size.x();
 				break;
 			}
 			case ' ': {
-				x += Field::size().x();
+				x += Field::Size.x();
 				break;
 			}
 			case '\n': {
 				x = 0.0;
-				y += Field::size().y();
+				y += Field::Size.y();
 				break;
 			}
 		}

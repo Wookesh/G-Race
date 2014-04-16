@@ -38,7 +38,7 @@ void ObjectGraphics::paint(QPainter *painter, const QStyleOptionGraphicsItem *op
 
 QPointF ObjectGraphics::size()
 {
-	return Object::size();
+	return object_->size();
 }
 
 
@@ -49,7 +49,7 @@ Object *ObjectGraphics::object()
 
 QRectF ObjectGraphics::boundingRect() const
 {
-	return QRectF(QPointF(0.0, 0.0), Object::size());
+	return QRectF(QPointF(0.0, 0.0), object_->size());
 }
 
 QPainterPath ObjectGraphics::shape() const

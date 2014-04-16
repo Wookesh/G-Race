@@ -19,6 +19,9 @@
 #include "Player.hpp"
 #include <QDebug>
 
+
+constexpr QPointF Player::Size;
+
 Player::Player(QString name, QPointF position) : Object(position), name_(name), gravity_(Gravity::Down),
 																 state_(State::Running), bonusSpead_(0.0)
 {
@@ -61,12 +64,11 @@ void Player::setState(Player::State state)
 
 QPointF Player::size()
 {
-	static QPointF point = QPointF(32.0, 48.0);
-	return point;
+	return Size;
 }
 
 
-void Player::onStep(Object *object)
+void Player::onStep(Object *object, Direction dir)
 {
 	qDebug() << "onStep";
 	object->setPosition(this->position() - QPointF(QPointF(Player::size()).x(), 0.0));

@@ -18,6 +18,8 @@
 
 #include "Object.hpp"
 
+constexpr QPointF Object::Size;
+
 Object::Object(QPointF position) : position_(position)
 {
 }
@@ -29,8 +31,7 @@ QPointF Object::position() const
 
 QPointF Object::size()
 {
-	static QPointF point = QPointF(32.0, 32.0);
-	return point;
+	return Size;
 }
 
 void Object::setPosition(QPointF position)

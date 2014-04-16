@@ -26,8 +26,10 @@ public :
 	explicit Field(bool transparent = false);
 	bool isTransparent();
 	
-	virtual void onStep(Object *object);
-	static QPointF size();
+	virtual void onStep(Object *object, Direction);
+	virtual QPointF size();
+	
+	static constexpr QPointF Size = Object::Size;
 private:
 	bool transparent_;
 };

@@ -19,6 +19,7 @@
 #ifndef OBJECT_HPP
 #define OBJECT_HPP
 #include <QPointF>
+#include "GRaceCommon.hpp"
 
 class Object {
 public :
@@ -27,9 +28,10 @@ public :
 	QPointF position() const;
 	void setPosition(QPointF position);
 	
-	virtual void onStep(Object *object) = 0;
+	virtual void onStep(Object *object, Direction) = 0;
 	
-	static QPointF size();
+	virtual QPointF size();
+	static constexpr QPointF Size = QPointF(32.0, 32.0);
 protected :
 	QPointF position_;
 };

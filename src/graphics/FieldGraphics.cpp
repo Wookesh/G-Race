@@ -37,12 +37,12 @@ Object *FieldGraphics::object()
 
 QPointF FieldGraphics::size()
 {
-	return Field::size();
+	return field_->size();
 }
 
 QRectF FieldGraphics::boundingRect() const
 {
-	return QRectF(QPointF(0.0, 0.0), Field::size());
+	return QRectF(QPointF(0.0, 0.0), field_->size());
 }
 
 QPainterPath FieldGraphics::shape() const

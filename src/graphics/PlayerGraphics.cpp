@@ -27,24 +27,24 @@ PlayerGraphics::PlayerGraphics(QVector<QString> *pathsToImages, Player *player, 
 
 QPointF PlayerGraphics::size()
 {
-    return Player::size();
+    return player_->size();
 }
 
 
 QRectF PlayerGraphics::boundingRect() const
 {
-	return QRectF(QPointF(0.0, 0.0), Player::size());
+	return QRectF(QPointF(0.0, 0.0), player_->size());
 }	
 
 Player *PlayerGraphics::player()
 {
 	return player_;
 }
-
+/*
 QPointF size() 
 {
-	return Player::size();
-}
+	return player_->size();
+}*/
 
 Object *PlayerGraphics::object()
 {

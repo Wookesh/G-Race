@@ -53,9 +53,11 @@ public :
 	qreal bonusSpeed() const;
 	void setBonusSpeed(qreal bonusSpeed);
 	
-	void onStep(Object *object) override;
+	void onStep(Object *object, Direction) override;
 	
-	static QPointF size();
+	virtual QPointF size();
+	
+	static constexpr QPointF Size = QPointF(32.0, 48.0);
 	static constexpr qreal BaseSpeed = 1.0;
 	
 private :
