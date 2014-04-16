@@ -43,6 +43,7 @@ public :
 	
 	Gravity gravity() const;
 	void setGravity(Gravity gravity);
+	void changeGravity();
 	
 	bool isFalling() const;
 	void setFalling(bool falling);

@@ -28,6 +28,7 @@
 #include "PlayerGraphics.hpp"
 #include "MovingObject.hpp"
 #include "../logic/CollisionDetector.hpp"
+#include <QKeyEvent>
 
 class Scene : public QGraphicsScene, public CollisionDetector {
 	Q_OBJECT
@@ -35,9 +36,12 @@ public :
 	explicit Scene(QWidget *parent = 0);
 	QList<Object *> collidingFields(QPointF, QPointF) const;
 	~Scene();
+protected:
+	void keyPressEvent(QKeyEvent *event);
 private :
 	QSet<PlayerGraphics *> players_;
 	QSet<MovingObject *> movingObjects_;
+
 public slots :
 	void setPause(bool);
 	void updatePos(); // renderuje

@@ -77,5 +77,17 @@ void Scene::setPause(bool )
 
 }
 
+void Scene::keyPressEvent(QKeyEvent* event)
+{
+	if(event->key() == Qt::Key_X){
+		for(PlayerGraphics *player : players_ )
+			player->player()->changeGravity();
+		
+	}
+		
+	QGraphicsScene::keyPressEvent(event);
+}
+
+
 
 

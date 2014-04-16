@@ -104,6 +104,7 @@ void GameController::timeout()
 				object->onStep(player, player->gravity() == Gravity::Down ? Direction::Down : Direction::Up);
 			}
 		} else {
+			player->setFalling(true);
 			player->setPosition(player->position() + QPointF(0.0, dy));
 		}
 		

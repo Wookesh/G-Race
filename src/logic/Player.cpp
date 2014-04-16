@@ -41,6 +41,16 @@ void Player::setGravity(Gravity gravity)
 {
 	gravity_ = gravity;
 }
+void Player::changeGravity()
+{
+// 	if(!isFalling()){FIXME
+		if(gravity() == Gravity::Down)
+			setGravity(Gravity::Up);
+		else
+			setGravity(Gravity::Down);
+		setFalling(true);
+// 	}
+}
 
 bool Player::isFalling() const
 {

@@ -20,6 +20,7 @@
 #define FIELD_HPP
 
 #include "Object.hpp"
+#include "Player.hpp"
 
 class Field : public Object {
 public :

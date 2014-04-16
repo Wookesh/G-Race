@@ -56,6 +56,7 @@ void Field::onStep(Object* object, Direction dir)
 	qDebug() << object->position();
 }
 
+
 bool Field::isTransparent()
 {
 	return transparent_;
