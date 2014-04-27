@@ -22,6 +22,7 @@
 #include <QString>
 #include "GRaceCommon.hpp"
 #include "Object.hpp"
+#include "Field.hpp"
 
 /**
  * Player
@@ -54,12 +55,13 @@ public :
 	qreal bonusSpeed() const;
 	void setBonusSpeed(qreal bonusSpeed);
 	
-	void onStep(Object *object, Direction) override;
+    void onStep(Object *object, Direction driection) override;
+    virtual void collided(Object *object, Direction direction) override;
 	
 	virtual QPointF size();
 	
 	static constexpr QPointF Size = QPointF(32.0, 48.0);
-	static constexpr qreal BaseSpeed = 1.0;
+    static constexpr qreal BaseSpeed = 2.0;
 	
 private :
 	QString name_;

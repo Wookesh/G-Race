@@ -20,7 +20,6 @@
 #define FIELD_HPP
 
 #include "Object.hpp"
-#include "Player.hpp"
 
 class Field : public Object {
 public :
@@ -28,6 +27,7 @@ public :
 	bool isTransparent();
 	
 	virtual void onStep(Object *object, Direction);
+    void collided(Object *object, Direction);
 	virtual QPointF size();
 	
 	static constexpr QPointF Size = Object::Size;

@@ -22,7 +22,7 @@
 
 constexpr QPointF Player::Size;
 
-Player::Player(QString name, QPointF position) : Object(position), name_(name), gravity_(Gravity::Down),
+Player::Player(QString name, QPointF position) : Object(position), name_(name), gravity_(Gravity::Down), falling_(true),
 																 state_(State::Running), bonusSpead_(0.0)
 {
 }
@@ -43,13 +43,13 @@ void Player::setGravity(Gravity gravity)
 }
 void Player::changeGravity()
 {
-// 	if(!isFalling()){FIXME
+    if(!isFalling()){
 		if(gravity() == Gravity::Down)
 			setGravity(Gravity::Up);
 		else
 			setGravity(Gravity::Down);
 		setFalling(true);
-// 	}
+    }
 }
 
 bool Player::isFalling() const
@@ -82,6 +82,22 @@ void Player::onStep(Object *object, Direction dir)
 {
 	qDebug() << "onStep";
 	object->setPosition(this->position() - QPointF(QPointF(Player::size()).x(), 0.0));
+}
+
+void Player::collided(Object *object, Direction direction)
+{
+    switch (direction) {
+        case Direction::Down : {
+            if (gravity() == Gravity::Down)
+                setFalling(false);
+            break;
+        }
+        case Direction::Up : {
+            if (gravity() == Gravity::Up)
+                setFalling(false);
+            break;
+        }
+    }
 }
 
 qreal Player::bonusSpeed() const

@@ -17,7 +17,6 @@
  */
 
 #include "Field.hpp"
-#include "Player.hpp"
 #include <QDebug>
 
 
@@ -33,7 +32,7 @@ QPointF Field::size()
 	return Size;
 }
 
-void Field::onStep(Object* object, Direction dir)
+void Field::onStep(Object *object, Direction dir)
 {
 	qDebug() << "Field " << this->position();
 	switch (dir) {
@@ -43,10 +42,12 @@ void Field::onStep(Object* object, Direction dir)
 		}
 		case Direction::Down : {
 			object->setPosition(QPointF(object->position().x() , this->position().y() - object->size().y()));
+            object->collided(this, dir);
 			break;
 		}
 		case Direction::Up : {
 			object->setPosition(QPointF(object->position().x() , this->position().y() + this->size().y()));
+            object->collided(this, dir);
 			break;
 		}
 	}
@@ -54,6 +55,11 @@ void Field::onStep(Object* object, Direction dir)
 	
 // 	object->setPosition(object->position());
 	qDebug() << object->position();
+}
+
+void Field::collided(Object *object, Direction)
+{
+
 }
 
 

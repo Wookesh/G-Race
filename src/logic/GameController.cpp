@@ -76,12 +76,10 @@ void GameController::timeout()
 				dx = Player::BaseSpeed;
 				QPointF newPos = player->position() + QPointF(dx, 0.0);
 				QList<Object *> list = collisionDetector_->collidingFields(newPos, player->size());
-				qDebug() << list.size();
+                qDebug() << "Objects collided on move right : " << list.size();
 				list.removeOne(player);
 				if (!list.isEmpty()) {
 					for (Object *object : list) {
-						qDebug() << "object";
-						qDebug() << object << player;
 						object->onStep(player, Direction::Right);
 					}
 				} else {
@@ -95,12 +93,10 @@ void GameController::timeout()
 			dy = -dy;
 		QPointF newPos = player->position() + QPointF(0.0, dy);
 		QList<Object *> list = collisionDetector_->collidingFields(newPos, player->size());
-		qDebug() << list.size();
+        qDebug() << "Objects collided on fall : " << list.size();
 		list.removeOne(player);
 		if (!list.isEmpty()) {
 			for (Object *object : list) {
-				qDebug() << "object";
-				qDebug() << object << player;
 				object->onStep(player, player->gravity() == Gravity::Down ? Direction::Down : Direction::Up);
 			}
 		} else {
