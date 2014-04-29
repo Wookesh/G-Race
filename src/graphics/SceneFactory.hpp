@@ -40,6 +40,7 @@ public :
 	explicit SceneFactory();
 	
 	static QString test1();
+	static QString testLong();
 	
 	Scene *createScene(QString map);
 // 	QDataStream &operator<<(QDataStream &out);

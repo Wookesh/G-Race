@@ -35,6 +35,8 @@ void MainWindow::createLayout()
 {
 	placeholder = new QWidget(this);
 	view = new View(currentScene);
+	view->setPlayer(*currentScene->players().begin());
+	connect(currentScene, &Scene::renderView, view, &View::render);
 	setCentralWidget(view);
 	gameController->startGame();
 }
@@ -56,7 +58,7 @@ void MainWindow::createGameController()
 {
 	gameController = new GameController(this);
 	SceneFactory *sf = new SceneFactory();
-	currentScene = sf->createScene(SceneFactory::test1());
+	currentScene = sf->createScene(SceneFactory::testLong());
 	Player *player = new Player("Andrzej", QPointF(262.0, 48.0));
 	player->setGravity(Gravity::Up);
 	gameController->addPlayer(player);

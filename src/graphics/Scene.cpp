@@ -70,6 +70,11 @@ void Scene::setPlayers(const QSet<Player *> &set)
 	}
 }
 
+QSet< PlayerGraphics* > Scene::players()
+{
+	return players_;
+}
+
 
 void Scene::setPause(bool )
 {
