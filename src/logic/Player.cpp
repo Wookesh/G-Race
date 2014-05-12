@@ -20,10 +20,11 @@
 #include <QDebug>
 
 
+
 constexpr QPointF Player::Size;
 
 Player::Player(QString name, QPointF position) : Object(position), name_(name), gravity_(Gravity::Down), falling_(true),
-																 state_(State::Running), bonusSpead_(0.0)
+																 state_(State::Running), bonusSpead_(0.0), powerup1_(nullptr)
 {
 }
 
@@ -97,8 +98,29 @@ void Player::collided(Object *object, Direction direction)
                 setFalling(false);
             break;
         }
+		case Direction::Left :
+			break;
+		case Direction::Right :
+			break;
+			
     }
 }
+
+void Player::collided(Powerup* powerup, Direction direction)
+{
+	if(powerup1() == nullptr) {
+		if(powerup->instant())
+			usePowerup(powerup);
+		else
+			setPowerup1(powerup);
+	}
+}
+
+void Player::setPowerup1(Powerup* powerup)
+{
+	powerup1_ = powerup;
+}
+
 
 qreal Player::bonusSpeed() const
 {
@@ -108,4 +130,34 @@ qreal Player::bonusSpeed() const
 void Player::setBonusSpeed(qreal bonusSpeed)
 {
 	bonusSpead_ = bonusSpeed;
+}
+
+
+
+
+void Player::usePowerup(Powerup * powerup)
+{
+	if(powerup != nullptr) {
+		powerup->apply(this);
+		activePowerups()[powerup]  = powerup->time();
+		
+	}
+
+}
+
+void Player::endPowerup(Powerup* powerup)
+{
+	setPowerup1(nullptr);
+	powerup->deapply(this);
+}
+
+
+Powerup* Player::powerup1()
+{
+	return powerup1_;
+}
+
+QHash<Powerup*, qint32>& Player::activePowerups()
+{
+	return activePowerups_;
 }

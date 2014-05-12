@@ -32,4 +32,7 @@ enum class Direction : qint8 {
 	Up,
 };
 
+
+static const int Frames = 30;
+
 #endif

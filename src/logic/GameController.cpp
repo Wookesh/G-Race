@@ -65,7 +65,19 @@ void GameController::stopTimer()
 void GameController::timeout()
 {
 	qreal dx, dy;
+	
 	for (Player *player : players_) {
+		qDebug() << "przed powerupami";
+		for(Powerup* powerup : player->activePowerups().keys()){
+			qDebug() << "skonczy sie za : " << player->activePowerups()[powerup] ;
+			if(player->activePowerups()[powerup] > 0)
+				player->activePowerups()[powerup] = player->activePowerups()[powerup] - 1;
+			else
+				player->endPowerup(powerup);
+		}
+		
+		qDebug() << "i po powerupamach";
+		
 		qDebug() << player->name() << player->position();
 		switch (player->state()) {
 			case Player::State::Pushing :
@@ -73,7 +85,7 @@ void GameController::timeout()
 				break;
 			}
 			case Player::State::Running : {
-				dx = Player::BaseSpeed;
+				dx = Player::BaseSpeed + player->bonusSpeed();
 				QPointF newPos = player->position() + QPointF(dx, 0.0);
 				QList<Object *> list = collisionDetector_->collidingFields(newPos, player->size());
                 qDebug() << "Objects collided on move right : " << list.size();
@@ -88,7 +100,7 @@ void GameController::timeout()
 				break;
 			}
 		}
-		dy = Player::BaseSpeed;
+		dy = Player::BaseSpeed + player->bonusSpeed();
 		if(player->gravity() == Gravity::Up)
 			dy = -dy;
 		QPointF newPos = player->position() + QPointF(0.0, dy);

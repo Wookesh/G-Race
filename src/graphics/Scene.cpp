@@ -88,6 +88,11 @@ void Scene::keyPressEvent(QKeyEvent* event)
 			player->player()->changeGravity();
 		
 	}
+	if(event->key() == Qt::Key_C){
+		for(PlayerGraphics *player : players_ )
+			player->player()->usePowerup(player->player()->powerup1());
+		
+	}
 		
 	QGraphicsScene::keyPressEvent(event);
 }

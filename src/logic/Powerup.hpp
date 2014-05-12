@@ -16,34 +16,30 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include <QMainWindow>
-#include <QAction>
-#include <QMenu>
-#include <QMouseEvent>
+#ifndef POWERUP_HPP
+#define POWERUP_HPP
+#include "Object.hpp"
+class Powerup;
+#include "Player.hpp"
 
-#include "../logic/GameController.hpp"
-#include "../logic/Powerup.hpp"
 
-#include "../graphics/Scene.hpp"
-#include "../graphics/View.hpp"
 
-class MainWindow : public QMainWindow {
-	Q_OBJECT
+class Powerup : public Object {
 public :
-	explicit MainWindow(QWidget *parent = 0, Qt::WindowFlags flags = 0);
-protected:
-	void mousePressEvent(QMouseEvent * event);
-private :
+	explicit Powerup(bool instant = false);
 	
-	GameController *gameController;
-	Scene *currentScene;
-	View *view;
+	virtual void onStep(Object *object, Direction);
+    void collided(Object *object, Direction);
+	virtual QPointF size();
+	static constexpr QPointF Size = Object::Size;
 	
-	QWidget *placeholder;
-	QAction *exit;
-	QMenu *menu;
-	void createMenus();
-	void createActions();
-	void createLayout();
-	void createGameController();
+	virtual void apply(Player* player);
+	virtual void deapply(Player* player);
+	virtual bool instant();
+	virtual qint32 time();
+private:
+	bool instant_;
+	qint32 time_ = 3 * Frames;
 };
+
+#endif

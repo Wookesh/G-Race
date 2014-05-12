@@ -61,6 +61,7 @@ void MainWindow::createGameController()
 	currentScene = sf->createScene(SceneFactory::testLong());
 	Player *player = new Player("Andrzej", QPointF(262.0, 48.0));
 	player->setGravity(Gravity::Up);
+	player->setPowerup1( new Powerup());
 	gameController->addPlayer(player);
 	gameController->setCollisionDetector(currentScene);
 	QSet<Player *> players;

@@ -20,14 +20,19 @@
 #define PLAYER_HPP
 #include <QPointF>
 #include <QString>
+#include <QHash>
+#include <QPair>
 #include "GRaceCommon.hpp"
 #include "Object.hpp"
 #include "Field.hpp"
+class Player;
+#include "Powerup.hpp"
 
 /**
  * Player
  * position is position of top-left corner of player box 
  */
+
 class Player : public Object {
 public :
 	
@@ -57,9 +62,17 @@ public :
 	
     void onStep(Object *object, Direction driection) override;
     virtual void collided(Object *object, Direction direction) override;
+    void collided(Powerup *powerup, Direction direction);
+	
+	 
+	void usePowerup(Powerup *powerup);
+	void endPowerup(Powerup *powerup);
+	Powerup* powerup1();
+	void setPowerup1(Powerup *powerup);
+	QHash<Powerup*, qint32> &activePowerups();
 	
 	virtual QPointF size();
-	
+	static constexpr qreal MaxSpeed = 16.0;
 	static constexpr QPointF Size = QPointF(32.0, 48.0);
     static constexpr qreal BaseSpeed = 2.0;
 	
@@ -69,6 +82,8 @@ private :
 	bool falling_;
 	State state_;
 	qreal bonusSpead_;
+	Powerup *powerup1_;
+	QHash<Powerup*, qint32> activePowerups_;
 };
 
 
