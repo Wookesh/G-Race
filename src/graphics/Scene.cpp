@@ -57,6 +57,16 @@ void Scene::updatePos()
 	emit renderView();
 }
 
+void Scene::addPlayer(Player *player)
+{
+	QVector<QString> paths;
+	paths.push_back("../textures/andrzej.png");
+	PlayerGraphics  *newPlayerGraphics = new PlayerGraphics(&paths, player);
+	players_.insert(newPlayerGraphics);
+	movingObjects_.insert(newPlayerGraphics);
+	QGraphicsScene::addItem(newPlayerGraphics);
+}
+
 
 void Scene::setPlayers(const QSet<Player *> &set)
 {

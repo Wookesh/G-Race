@@ -37,6 +37,7 @@ public :
 	QList<Object *> collidingFields(QPointF, QPointF) const;
 	~Scene();
 	QSet<PlayerGraphics *> players();
+	void addPlayer(Player *player);
 protected:
 	void keyPressEvent(QKeyEvent *event);
 private :

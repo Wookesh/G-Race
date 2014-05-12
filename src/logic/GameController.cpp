@@ -40,6 +40,7 @@ void GameController::setCollisionDetector(CollisionDetector* collisionDetector)
 void GameController::addPlayer(Player *player)
 {
 	players_.insert(player);
+	collisionDetector_->addPlayer(player);
 }
 
 GameController::State GameController::state() const

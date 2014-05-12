@@ -1,6 +1,6 @@
 /* G-Race
  * Copyright (C) 2014 Łukasz Piesewicz, Tomasz Wawreniuk, Maja Zalewska, Michał Kiełek
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -16,21 +16,35 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include <QApplication>
-#include <QFontDatabase>
-#include "MainWindow.hpp"
+#include "GameWindow.hpp"
+#include "QHBoxLayout"
 
-int main(int argc, char** argv)
+GameWindow::GameWindow(GameController *gameController, QWidget *parent) : MenuWidget(parent), gameController_(gameController)
 {
 
-	QApplication app(argc, argv);
+}
 
-	int id = QFontDatabase::addApplicationFont("../src/gui/graviseg.ttf");
-	QApplication::setFont(QFont(QFontDatabase::applicationFontFamilies(id).first()));
-	QCoreApplication::setApplicationName("G-Race");
-	QCoreApplication::setOrganizationName("G-Soft");
+void GameWindow::keyPressEvent(QKeyEvent *event)
+{
+	MenuWidget::keyPressEvent(event);
+}
 
-	MainWindow mainWindow;
-	mainWindow.showFullScreen();
-	return app.exec();
+void GameWindow::setScene(Scene *scene)
+{
+	currentScene_ = scene;
+}
+
+void GameWindow::startGame()
+{
+	//TODO add view for all players,
+
+	View *view = new View(currentScene_);
+	view->setPlayer(*currentScene_->players().begin());
+	connect(currentScene_, &Scene::renderView, view, &View::render);
+	QHBoxLayout *layout = new QHBoxLayout();
+	layout->setAlignment(Qt::AlignCenter);
+	layout->addWidget(view);
+	setLayout(layout);
+
+	gameController_->startGame();
 }

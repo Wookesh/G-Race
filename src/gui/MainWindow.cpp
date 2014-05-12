@@ -23,56 +23,64 @@
 
 #include "../graphics/SceneFactory.hpp"
 
+
 MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags flags): QMainWindow(parent, flags)
 {
 	createGameController();
 	createLayout();
-	createActions();
-	createMenus();
 }
 
 void MainWindow::createLayout()
 {
-	placeholder = new QWidget(this);
-	view = new View(currentScene);
-	view->setPlayer(*currentScene->players().begin());
-	connect(currentScene, &Scene::renderView, view, &View::render);
-	setCentralWidget(view);
-	gameController->startGame();
-}
-
-void MainWindow::createActions()
-{
-	exit = new QAction(tr("Exit"), this);
-	exit->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Q));
-	connect(exit, SIGNAL(triggered()), qApp, SLOT(quit()));
-}
-
-void MainWindow::createMenus()
-{
-	menu = menuBar()->addMenu(tr("&Menu"));
-	menu->addAction(exit);
+	stackedWidgets = new QStackedWidget(this);
+	mainMenu = new Menu(this);
+	optionMenu = new OptionMenu(this);
+	preGameMenu = new PreGameMenu(this);
+	preGameMenu->setGameController(gameController);
+	gameWindow = new GameWindow(gameController, this);
+	gameWindow->setScene(currentScene);
+	connect(mainMenu, &Menu::options, this, &MainWindow::setOptionMenu);
+	connect(mainMenu, &Menu::startGame, this, &MainWindow::prepareGame);
+	connect(mainMenu, &Menu::exit, this, &MainWindow::close);
+	connect(mainMenu, &Menu::exit, optionMenu, &OptionMenu::close);
+	connect(optionMenu, &OptionMenu::canceled, this, &MainWindow::setMainMenu);
+	connect(optionMenu, &OptionMenu::saved, this, &MainWindow::setMainMenu);
+	connect(preGameMenu, &PreGameMenu::playGame, this, &MainWindow::startGame);
+	stackedWidgets->addWidget(mainMenu);
+	stackedWidgets->addWidget(optionMenu);
+	stackedWidgets->addWidget(preGameMenu);
+	stackedWidgets->addWidget(gameWindow);
+	setCentralWidget(stackedWidgets);
 }
 
 void MainWindow::createGameController()
 {
-	gameController = new GameController(this);
 	SceneFactory *sf = new SceneFactory();
+	gameController = new GameController(this);
 	currentScene = sf->createScene(SceneFactory::testLong());
-	Player *player = new Player("Andrzej", QPointF(262.0, 48.0));
-	player->setGravity(Gravity::Up);
-	gameController->addPlayer(player);
 	gameController->setCollisionDetector(currentScene);
-	QSet<Player *> players;
-	players.insert(player);
-	currentScene->setPlayers(players);
 	connect(gameController, &GameController::render, currentScene, &Scene::updatePos);
 }
 
-void MainWindow::mousePressEvent(QMouseEvent* event)
+void MainWindow::setOptionMenu()
 {
-	QMainWindow::mousePressEvent(event);
-	
+	stackedWidgets->setCurrentWidget(optionMenu);
+}
+
+void MainWindow::setMainMenu()
+{
+	stackedWidgets->setCurrentWidget(mainMenu);
+}
+
+void MainWindow::prepareGame()
+{
+	stackedWidgets->setCurrentWidget(preGameMenu);
+}
+
+void MainWindow::startGame()
+{
+	gameWindow->startGame();
+	stackedWidgets->setCurrentWidget(gameWindow);
 }
 
 

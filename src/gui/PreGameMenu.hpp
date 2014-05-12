@@ -1,6 +1,6 @@
 /* G-Race
  * Copyright (C) 2014 Łukasz Piesewicz, Tomasz Wawreniuk, Maja Zalewska, Michał Kiełek
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -16,21 +16,44 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include <QApplication>
-#include <QFontDatabase>
-#include "MainWindow.hpp"
+#ifndef PRE_GAME_MENU_HPP
+#define PRE_GAME_MENU_HPP
 
-int main(int argc, char** argv)
-{
+#include "MenuWidget.hpp"
+#include "MenuButton.hpp"
+#include <QSignalMapper>
+#include <QButtonGroup>
+#include <QLineEdit>
 
-	QApplication app(argc, argv);
+class GameController;
+class SceneFactory;
 
-	int id = QFontDatabase::addApplicationFont("../src/gui/graviseg.ttf");
-	QApplication::setFont(QFont(QFontDatabase::applicationFontFamilies(id).first()));
-	QCoreApplication::setApplicationName("G-Race");
-	QCoreApplication::setOrganizationName("G-Soft");
+class PreGameMenu : public MenuWidget {
+	Q_OBJECT
+public:
+	explicit PreGameMenu(QWidget *parent = nullptr);
 
-	MainWindow mainWindow;
-	mainWindow.showFullScreen();
-	return app.exec();
-}
+	void setGameController(GameController *gameController);
+
+private:
+
+	GameController *gameController_;
+
+	QSignalMapper *signalMapper;
+
+	MenuButton *playButton;
+	QButtonGroup *buttonGroup;
+	QVector<QLineEdit *> playerNames;
+	int playersNumber;
+
+	void createLayout();
+	void createButtons();
+	void createLineEdits();
+private slots:
+	void play();
+	void setPlayersNumber(int);
+signals:
+	void playGame();
+};
+
+#endif

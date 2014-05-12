@@ -1,6 +1,6 @@
 /* G-Race
  * Copyright (C) 2014 Łukasz Piesewicz, Tomasz Wawreniuk, Maja Zalewska, Michał Kiełek
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -16,21 +16,31 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include <QApplication>
-#include <QFontDatabase>
-#include "MainWindow.hpp"
+#ifndef MENU_HPP
+#define MENU_HPP
 
-int main(int argc, char** argv)
-{
 
-	QApplication app(argc, argv);
+#include "MenuWidget.hpp"
+#include "MenuButton.hpp"
 
-	int id = QFontDatabase::addApplicationFont("../src/gui/graviseg.ttf");
-	QApplication::setFont(QFont(QFontDatabase::applicationFontFamilies(id).first()));
-	QCoreApplication::setApplicationName("G-Race");
-	QCoreApplication::setOrganizationName("G-Soft");
 
-	MainWindow mainWindow;
-	mainWindow.showFullScreen();
-	return app.exec();
-}
+class Menu : public MenuWidget {
+	Q_OBJECT
+public :
+	Menu(QWidget *parent = nullptr);
+private :
+
+	void createButtons();
+	void createLayout();
+
+	QPushButton *startGameButton;
+	QPushButton *optionsButton;
+	QPushButton *exitButton;
+signals:
+	void startGame();
+	void options();
+	void exit();
+};
+
+
+#endif

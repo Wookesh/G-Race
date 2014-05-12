@@ -1,6 +1,6 @@
 /* G-Race
  * Copyright (C) 2014 Łukasz Piesewicz, Tomasz Wawreniuk, Maja Zalewska, Michał Kiełek
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -16,21 +16,33 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include <QApplication>
-#include <QFontDatabase>
-#include "MainWindow.hpp"
+#ifndef MENU_BUTTON_HPP
+#define MENU_BUTTON_HPP
 
-int main(int argc, char** argv)
-{
+#include <QPushButton>
 
-	QApplication app(argc, argv);
 
-	int id = QFontDatabase::addApplicationFont("../src/gui/graviseg.ttf");
-	QApplication::setFont(QFont(QFontDatabase::applicationFontFamilies(id).first()));
-	QCoreApplication::setApplicationName("G-Race");
-	QCoreApplication::setOrganizationName("G-Soft");
+class MenuButton : public QPushButton {
+	Q_OBJECT
+public :
+	MenuButton(const QString &text, QWidget *parent = nullptr);
 
-	MainWindow mainWindow;
-	mainWindow.showFullScreen();
-	return app.exec();
-}
+	virtual QSize minimumSizeHint() const {
+		return pixmap().size();
+	}
+
+	virtual QSize sizeHint() const {
+		return pixmap().size();
+	}
+
+
+protected:
+	void paintEvent(QPaintEvent *e);
+	void mousePressEvent(QMouseEvent *e);
+	void mouseReleaseEvent(QMouseEvent *e);
+private :
+	static const QPixmap &pixmap();
+	static const QPixmap &pixmapFull();
+};
+
+#endif

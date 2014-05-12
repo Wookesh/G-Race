@@ -22,11 +22,13 @@
 #include <QPointF>
 #include <QList>
 #include "Object.hpp"
+#include "Player.hpp"
 
 class CollisionDetector {
 public :
 	CollisionDetector();
 	virtual QList<Object *> collidingFields(QPointF, QPointF) const = 0;
+	virtual void addPlayer(Player *player) = 0;
 };
 
 #endif

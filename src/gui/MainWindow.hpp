@@ -20,6 +20,12 @@
 #include <QAction>
 #include <QMenu>
 #include <QMouseEvent>
+#include <QStackedWidget>
+
+#include "Menu.hpp"
+#include "OptionMenu.hpp"
+#include "PreGameMenu.hpp"
+#include "GameWindow.hpp"
 
 #include "../logic/GameController.hpp"
 
@@ -30,19 +36,25 @@ class MainWindow : public QMainWindow {
 	Q_OBJECT
 public :
 	explicit MainWindow(QWidget *parent = 0, Qt::WindowFlags flags = 0);
-protected:
-	void mousePressEvent(QMouseEvent * event);
 private :
 	
+	QStackedWidget *stackedWidgets;
+	Menu *mainMenu;
+	OptionMenu *optionMenu;
+	PreGameMenu *preGameMenu;
+	GameWindow *gameWindow;
+
 	GameController *gameController;
 	Scene *currentScene;
 	View *view;
 	
 	QWidget *placeholder;
 	QAction *exit;
-	QMenu *menu;
-	void createMenus();
-	void createActions();
 	void createLayout();
 	void createGameController();
+private slots:
+	void setMainMenu();
+	void setOptionMenu();
+	void prepareGame();
+	void startGame();
 };

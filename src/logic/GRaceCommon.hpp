@@ -20,12 +20,14 @@
 #define G_RACE_COMMON_HPP
 #include <qglobal.h>
 
+const quint8 MaxPlayers  = 4;
+
 enum class Gravity : bool {
 	Up,
 	Down,
 };
 
-enum class Direction : qint8 {
+enum class Direction : quint8 {
 	Right,
 	Down,
 	Left,
