@@ -22,7 +22,7 @@
 
 constexpr QPointF Powerup::Size;
 
-Powerup::Powerup(bool instant): instant_(instant)
+Powerup::Powerup(bool instant): instant_(instant), used_(false)
 {
 	
 }
@@ -34,8 +34,29 @@ QPointF Powerup::size()
 
 void Powerup::onStep(Object *object, Direction dir)
 {
-	object->collided(this, dir);
+	
+	Player *p = static_cast<Player*>(object);
+	p->setPosition(p->position() + QPointF(Player::BaseSpeed + p->bonusSpeed(), 0.0));
+	if(!used()){
+		qDebug() << "onstep na powerupie";
+		
+		if(this->instant()){
+			p->usePowerup(this);
+		}
+		else{
+			if(p->powerup1() == nullptr) 
+				p->setPowerup1(this);
+		}
+		setUsed(true);
+	}
+	
 }
+
+void Powerup::setUsed(bool used)
+{
+	used_ = used;
+}
+
 
 void Powerup::collided(Object *object, Direction)
 {
@@ -47,14 +68,20 @@ bool Powerup::instant()
 {
 	return instant_;
 }
+
+bool Powerup::used()
+{
+	return used_;
+}
+
 void Powerup::apply(Player* player)
 {
-	player->setBonusSpeed(5.0);
+	player->setBonusSpeed(player->bonusSpeed() + 4.0);
 }
 
 void Powerup::deapply(Player* player)
 {
-	player->setBonusSpeed(0.0);
+	player->setBonusSpeed(player->bonusSpeed() - 4.0);
 }
 
 qint32 Powerup::time()

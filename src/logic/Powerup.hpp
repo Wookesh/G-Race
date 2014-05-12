@@ -36,9 +36,12 @@ public :
 	virtual void apply(Player* player);
 	virtual void deapply(Player* player);
 	virtual bool instant();
+	virtual bool used();
+	void setUsed(bool used);
 	virtual qint32 time();
 private:
 	bool instant_;
+	bool used_;
 	qint32 time_ = 3 * Frames;
 };
 

@@ -34,7 +34,7 @@ QPointF Field::size()
 
 void Field::onStep(Object *object, Direction dir)
 {
-	qDebug() << "Field " << this->position();
+//  	qDebug() << "Field " << this->position();
 	switch (dir) {
 		case Direction::Right : {
 			object->setPosition(QPointF(this->position().x() - object->size().x() , object->position().y()));
@@ -54,7 +54,7 @@ void Field::onStep(Object *object, Direction dir)
 	
 	
 // 	object->setPosition(object->position());
-	qDebug() << object->position();
+// 	qDebug() << object->position();
 }
 
 void Field::collided(Object *object, Direction)

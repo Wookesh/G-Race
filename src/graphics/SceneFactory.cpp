@@ -40,6 +40,7 @@ QString SceneFactory::testLong()
 	return QString("########################################################################################\n"
 						"#                                                                                      #\n"
 						"#                                                                                      #\n"
+						"#                 @           @                                                         #\n"
 						"########################################################################################\n");
 }
 
@@ -64,6 +65,14 @@ Scene *SceneFactory::createScene(QString map)
 				field->setPos(x, y);
 				field->field()->setPosition(field->pos());
 				scene->addItem(field);
+				x += Field::Size.x();
+				break;
+			}
+			case '@' : {
+				PowerupGraphics *pg = new PowerupGraphics(&graphics, new Powerup(true));
+				pg->setPos(x, y);
+				pg->powerup()->setPosition(pg->pos());
+				scene->addItem(pg);
 				x += Field::Size.x();
 				break;
 			}

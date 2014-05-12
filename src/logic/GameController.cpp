@@ -67,7 +67,7 @@ void GameController::timeout()
 	qreal dx, dy;
 	
 	for (Player *player : players_) {
-		qDebug() << "przed powerupami";
+// 		qDebug() << "przed powerupami";
 		for(Powerup* powerup : player->activePowerups().keys()){
 			qDebug() << "skonczy sie za : " << player->activePowerups()[powerup] ;
 			if(player->activePowerups()[powerup] > 0)
@@ -76,9 +76,9 @@ void GameController::timeout()
 				player->endPowerup(powerup);
 		}
 		
-		qDebug() << "i po powerupamach";
+// 		qDebug() << "i po powerupamach";
 		
-		qDebug() << player->name() << player->position();
+		qDebug() << player->name() << player->position() <<player->bonusSpeed();
 		switch (player->state()) {
 			case Player::State::Pushing :
 			case Player::State::Stuned : {
@@ -88,7 +88,7 @@ void GameController::timeout()
 				dx = Player::BaseSpeed + player->bonusSpeed();
 				QPointF newPos = player->position() + QPointF(dx, 0.0);
 				QList<Object *> list = collisionDetector_->collidingFields(newPos, player->size());
-                qDebug() << "Objects collided on move right : " << list.size();
+//                 qDebug() << "Objects collided on move right : " << list.size();
 				list.removeOne(player);
 				if (!list.isEmpty()) {
 					for (Object *object : list) {
@@ -105,7 +105,7 @@ void GameController::timeout()
 			dy = -dy;
 		QPointF newPos = player->position() + QPointF(0.0, dy);
 		QList<Object *> list = collisionDetector_->collidingFields(newPos, player->size());
-        qDebug() << "Objects collided on fall : " << list.size();
+//         qDebug() << "Objects collided on fall : " << list.size();
 		list.removeOne(player);
 		if (!list.isEmpty()) {
 			for (Object *object : list) {

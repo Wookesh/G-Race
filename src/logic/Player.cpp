@@ -44,6 +44,7 @@ void Player::setGravity(Gravity gravity)
 }
 void Player::changeGravity()
 {
+	
     if(!isFalling()){
 		if(gravity() == Gravity::Down)
 			setGravity(Gravity::Up);
@@ -81,12 +82,12 @@ QPointF Player::size()
 
 void Player::onStep(Object *object, Direction dir)
 {
-	qDebug() << "onStep";
 	object->setPosition(this->position() - QPointF(QPointF(Player::size()).x(), 0.0));
 }
 
 void Player::collided(Object *object, Direction direction)
 {
+	
     switch (direction) {
         case Direction::Down : {
             if (gravity() == Gravity::Down)
@@ -137,7 +138,13 @@ void Player::setBonusSpeed(qreal bonusSpeed)
 
 void Player::usePowerup(Powerup * powerup)
 {
+	qDebug() << "uzywam powerupa";
 	if(powerup != nullptr) {
+		if(powerup == powerup1()){
+			qDebug() << "usuniety";
+			powerup1_ = nullptr;
+		}
+		
 		powerup->apply(this);
 		activePowerups()[powerup]  = powerup->time();
 		
@@ -147,8 +154,8 @@ void Player::usePowerup(Powerup * powerup)
 
 void Player::endPowerup(Powerup* powerup)
 {
-	setPowerup1(nullptr);
 	powerup->deapply(this);
+	activePowerups().remove(powerup);
 }
 
 

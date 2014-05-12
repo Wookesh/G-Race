@@ -61,8 +61,9 @@ public :
 	void setBonusSpeed(qreal bonusSpeed);
 	
     void onStep(Object *object, Direction driection) override;
+	
+    virtual void collided(Powerup *powerup, Direction direction);
     virtual void collided(Object *object, Direction direction) override;
-    void collided(Powerup *powerup, Direction direction);
 	
 	 
 	void usePowerup(Powerup *powerup);
