@@ -33,5 +33,6 @@ enum class Direction : quint8 {
 	Left,
 	Up,
 };
+const int Frames = 30;
 
 #endif

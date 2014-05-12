@@ -16,25 +16,33 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
+#ifndef POWERUP_HPP
+#define POWERUP_HPP
 #include "Object.hpp"
+class Powerup;
+#include "Player.hpp"
 
-constexpr QPointF Object::Size;
 
-Object::Object(QPointF position) : position_(position)
-{
-}
 
-QPointF Object::position() const
-{
-	return position_;
-}
+class Powerup : public Object {
+public :
+	explicit Powerup(bool instant = false);
+	
+	virtual void onStep(Object *object, Direction);
+    void collided(Object *object, Direction);
+	virtual QPointF size();
+	static constexpr QPointF Size = Object::Size;
+	
+	virtual void apply(Player* player);
+	virtual void deapply(Player* player);
+	virtual bool instant();
+	virtual bool used();
+	void setUsed(bool used);
+	virtual qint32 time();
+private:
+	bool instant_;
+	bool used_;
+	qint32 time_ = 3 * Frames;
+};
 
-QPointF Object::size()
-{
-	return Size;
-}
-
-void Object::setPosition(QPointF position)
-{
-	position_ = position;
-}
+#endif

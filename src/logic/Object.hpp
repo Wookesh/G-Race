@@ -29,7 +29,7 @@ public :
 	void setPosition(QPointF position);
 	
 	virtual void onStep(Object *object, Direction) = 0;
-
+	
     virtual void collided(Object *object, Direction) = 0;
 	
 	virtual QPointF size();

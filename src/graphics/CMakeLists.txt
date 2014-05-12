@@ -6,6 +6,7 @@ add_library(graphics
 	Scene.cpp
 	SceneFactory.cpp
 	View.cpp
+        PowerupGraphics.cpp
 	)
 qt5_use_modules(graphics Widgets)
 target_link_libraries(graphics logic)

@@ -22,10 +22,12 @@
 #include <QObject>
 #include <QSet>
 #include <QTimer>
+#include <QPair>
 #include "GRaceCommon.hpp"
 #include "Player.hpp"
 #include "Field.hpp"
 #include "CollisionDetector.hpp"
+#include "Powerup.hpp"
 
 class GameController : public QObject {
 	Q_OBJECT
@@ -51,7 +53,6 @@ public :
 	void startGame();
 	
 	static const int MaxPlayers = 4;
-	static const int Frames = 30;
 	
 private :
 	State state_;

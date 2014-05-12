@@ -1,6 +1,6 @@
 /* G-Race
  * Copyright (C) 2014 Łukasz Piesewicz, Tomasz Wawreniuk, Maja Zalewska, Michał Kiełek
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -16,25 +16,43 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include "Object.hpp"
+#include "PowerupGraphics.hpp"
 
-constexpr QPointF Object::Size;
-
-Object::Object(QPointF position) : position_(position)
+PowerupGraphics::PowerupGraphics(QVector< QString >* pathsToImages, Powerup* Powerup, QGraphicsItem* parent):
+    ObjectGraphics(pathsToImages, parent), powerup_(Powerup)
 {
+
 }
 
-QPointF Object::position() const
+
+Powerup *PowerupGraphics::powerup()
 {
-	return position_;
+    return powerup_;
 }
 
-QPointF Object::size()
+Object *PowerupGraphics::object()
 {
-	return Size;
+    return powerup_;
 }
 
-void Object::setPosition(QPointF position)
+QPointF PowerupGraphics::size()
 {
-	position_ = position;
+    return powerup_->size();
 }
+
+QRectF PowerupGraphics::boundingRect() const
+{
+    return QRectF(QPointF(0.0, 0.0), powerup_->size());
+}
+
+QPainterPath PowerupGraphics::shape() const
+{
+    QPainterPath path;
+    path.addRect(boundingRect());
+    return path;
+}
+
+
+
+
+

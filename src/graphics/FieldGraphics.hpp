@@ -24,7 +24,7 @@
 
 class FieldGraphics : public ObjectGraphics {
 public :
-	explicit FieldGraphics(QVector<QString> *pathsToImages = 0, Field *field = 0, QGraphicsItem *parent = 0);
+    explicit FieldGraphics(QVector<QString> *pathsToImages = 0, Field *field = 0, QGraphicsItem *parent = 0);
 	virtual QRectF boundingRect() const override;
 	virtual QPainterPath shape() const override;
 	Field *field();

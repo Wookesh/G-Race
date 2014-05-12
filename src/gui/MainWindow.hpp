@@ -28,6 +28,7 @@
 #include "GameWindow.hpp"
 
 #include "../logic/GameController.hpp"
+#include "../logic/Powerup.hpp"
 
 #include "../graphics/Scene.hpp"
 #include "../graphics/View.hpp"
