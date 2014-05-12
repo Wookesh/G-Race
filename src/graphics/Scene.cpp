@@ -97,6 +97,28 @@ void Scene::keyPressEvent(QKeyEvent* event)
 	QGraphicsScene::keyPressEvent(event);
 }
 
+void Scene::addPowerup(Powerup *powerup)
+{
+    QVector<QString> graphics;
+    graphics.push_front(QString("../textures/powerup_default.jpg"));
+    PowerupGraphics *powerupGraphics = new PowerupGraphics(&graphics, powerup);
+    powerups_.insert(powerupGraphics);
+    this->addItem(powerupGraphics);
+}
 
+void Scene::deletePowerup(Powerup *powerup)
+{
+    auto it = powerups_.begin();
+
+    while ( (*(*it)).powerup() != powerup)
+    {
+        it++;
+    }
+
+    PowerupGraphics *temp = *it;
+    this->removeItem(temp);
+    powerups_.remove(temp);
+    delete temp;
+}
 
 

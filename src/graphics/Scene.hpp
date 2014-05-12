@@ -29,6 +29,7 @@
 #include "MovingObject.hpp"
 #include "../logic/CollisionDetector.hpp"
 #include <QKeyEvent>
+#include "PowerupGraphics.hpp"
 
 class Scene : public QGraphicsScene, public CollisionDetector {
 	Q_OBJECT
@@ -42,6 +43,7 @@ protected:
 private :
 	QSet<PlayerGraphics *> players_;
 	QSet<MovingObject *> movingObjects_;
+    QSet<PowerupGraphics *> powerups_;
 
 public slots :
 	void setPause(bool);
@@ -49,6 +51,8 @@ public slots :
 	void start();
 	void finish();
 	void setPlayers(const QSet<Player*> &set);
+    void addPowerup(Powerup *powerup);
+    void deletePowerup(Powerup *powerup);
 signals :
 	//void doneRender();
 	void renderView();

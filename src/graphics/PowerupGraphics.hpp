@@ -1,6 +1,6 @@
 /* G-Race
  * Copyright (C) 2014 Łukasz Piesewicz, Tomasz Wawreniuk, Maja Zalewska, Michał Kiełek
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -16,22 +16,22 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#ifndef FIELD_GRAPHICS_HPP
-#define FIELD_GRAPHICS_HPP
+#ifndef POWERUP_GRAPHICS_HPP
+#define POWERUP_GRAPHICS_HPP
 
 #include "ObjectGraphics.hpp"
-#include "../logic/Field.hpp"
+#include "../logic/Powerup.hpp"
 
-class FieldGraphics : public ObjectGraphics {
+class PowerupGraphics : public ObjectGraphics {
 public :
-    explicit FieldGraphics(QVector<QString> *pathsToImages = 0, Field *field = 0, QGraphicsItem *parent = 0);
-	virtual QRectF boundingRect() const override;
-	virtual QPainterPath shape() const override;
-	Field *field();
-	QPointF size();
-	virtual Object *object();
+    explicit PowerupGraphics(QVector<QString> *pathsToImages = 0, Powerup *Powerup = 0, QGraphicsItem *parent = 0);
+    virtual QRectF boundingRect() const override;
+    virtual QPainterPath shape() const override;
+    Powerup *powerup();
+    QPointF size();
+    virtual Object *object();
 private :
-	Field *field_;
+    Powerup *powerup_;
 };
 
 #endif
