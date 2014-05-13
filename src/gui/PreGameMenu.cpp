@@ -42,7 +42,7 @@ void PreGameMenu::createLayout()
 	for (int i = 0; i < MaxPlayers; ++i) {
 		layout->addRow(buttonGroup->button(i + 1), playerNames[i]);
 	}
-	layout->addRow(playButton);
+	layout->addRow(backButton, playButton);
 	setLayout(layout);
 }
 
@@ -60,10 +60,14 @@ void PreGameMenu::createButtons()
 		buttonGroup->addButton(button, i);
 	}
 
+	connect(signalMapper, SIGNAL(mapped(int)), this, SLOT(setPlayersNumber(int)));
+	buttonGroup->button(1)->click();
 	playButton = new MenuButton("Play");
 	connect(playButton, &MenuButton::clicked, this, &PreGameMenu::play);
+	
+	backButton = new MenuButton("Back");
+	connect(backButton, &MenuButton::clicked, this, &PreGameMenu::back);
 
-	connect(signalMapper, SIGNAL(mapped(int)), this, SLOT(setPlayersNumber(int)));
 
 }
 

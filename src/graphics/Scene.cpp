@@ -57,10 +57,17 @@ void Scene::updatePos()
 	emit renderView();
 }
 
+void Scene::addStartingPos(int playerNo, QPointF pos)
+{
+	startingPos_[playerNo] = pos;
+}
+
+
 void Scene::addPlayer(Player *player)
 {
 	QVector<QString> paths;
 	paths.push_back("../textures/andrzej.png");
+	player->setPosition(startingPos_[players_.size() + 1]);
 	PlayerGraphics  *newPlayerGraphics = new PlayerGraphics(&paths, player);
 	players_.insert(newPlayerGraphics);
 	movingObjects_.insert(newPlayerGraphics);

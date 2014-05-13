@@ -29,6 +29,7 @@ public :
 	CollisionDetector();
 	virtual QList<Object *> collidingFields(QPointF, QPointF) const = 0;
 	virtual void addPlayer(Player *player) = 0;
+	virtual void addStartingPos(int playerNo, QPointF startingPos) = 0;
 };
 
 #endif

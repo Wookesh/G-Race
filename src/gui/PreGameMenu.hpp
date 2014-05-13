@@ -42,6 +42,7 @@ private:
 	QSignalMapper *signalMapper;
 
 	MenuButton *playButton;
+	MenuButton *backButton;
 	QButtonGroup *buttonGroup;
 	QVector<QLineEdit *> playerNames;
 	int playersNumber;
@@ -54,6 +55,7 @@ private slots:
 	void setPlayersNumber(int);
 signals:
 	void playGame();
+	void back();
 };
 
 #endif

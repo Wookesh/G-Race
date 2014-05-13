@@ -39,12 +39,14 @@ public :
 	~Scene();
 	QSet<PlayerGraphics *> players();
 	void addPlayer(Player *player);
+	void addStartingPos(int playerNo, QPointF pos);
 protected:
 	void keyPressEvent(QKeyEvent *event);
 private :
+	QHash<int, QPointF> startingPos_;
 	QSet<PlayerGraphics *> players_;
 	QSet<MovingObject *> movingObjects_;
-    QSet<PowerupGraphics *> powerups_;
+	QSet<PowerupGraphics *> powerups_;
 
 public slots :
 	void setPause(bool);
@@ -52,8 +54,8 @@ public slots :
 	void start();
 	void finish();
 	void setPlayers(const QSet<Player*> &set);
-    void addPowerup(Powerup *powerup);
-    void deletePowerup(Powerup *powerup);
+	void addPowerup(Powerup *powerup);
+	void deletePowerup(Powerup *powerup);
 signals :
 	//void doneRender();
 	void renderView();

@@ -19,6 +19,7 @@
 #include "SceneFactory.hpp"
 #include "FieldGraphics.hpp"
 #include <QDebug>
+#include <QString>
 
 SceneFactory::SceneFactory()
 {
@@ -40,10 +41,9 @@ QString SceneFactory::testLong()
 	return QString("########################################################################################\n"
 						"#                                                                                      #\n"
 						"#                                                                                      #\n"
-						"#                 @           @                                                         #\n"
+						"# 4 3 2 1        @           @                                                         #\n"
 						"########################################################################################\n");
 }
-
 
 
 //FIXME Later
@@ -83,6 +83,14 @@ Scene *SceneFactory::createScene(QString map)
 			case '\n': {
 				x = 0.0;
 				y += Field::Size.y();
+				break;
+			}
+			case '1':
+			case '2':
+			case '3':
+			case '4': {
+				scene->addStartingPos(QString(ch).toInt(), QPointF(x, y));
+				x += Field::Size.x();
 				break;
 			}
 		}

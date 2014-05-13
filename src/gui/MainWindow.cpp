@@ -46,6 +46,7 @@ void MainWindow::createLayout()
 	connect(optionMenu, &OptionMenu::canceled, this, &MainWindow::setMainMenu);
 	connect(optionMenu, &OptionMenu::saved, this, &MainWindow::setMainMenu);
 	connect(preGameMenu, &PreGameMenu::playGame, this, &MainWindow::startGame);
+	connect(preGameMenu, &PreGameMenu::back, this, &MainWindow::setMainMenu);
 	stackedWidgets->addWidget(mainMenu);
 	stackedWidgets->addWidget(optionMenu);
 	stackedWidgets->addWidget(preGameMenu);
